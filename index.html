@@ -99,7 +99,7 @@
     nav a:hover {
       background-color: #00bcd4;
       color: white;
-      transform: scale(1.05) rotate(2deg);
+      transform: scale(1.05);
       box-shadow: 0 0 20px #00bcd4;
     }
 
@@ -111,18 +111,8 @@
       padding: 40px;
       border-radius: 25px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+      animation: slideUp 1s ease;
       border: 1px solid #00bcd4;
-    }
-
-    .scroll-fade {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s ease-out;
-    }
-
-    .scroll-fade.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     h2 {
@@ -131,7 +121,6 @@
       font-size: 2em;
       text-shadow: 0 0 10px var(--blue);
       font-family: 'Orbitron', sans-serif;
-      animation: pulseGlow 2s infinite;
     }
 
     ul {
@@ -147,15 +136,7 @@
       border-radius: 10px;
       transition: background-color 0.3s, transform 0.3s;
       box-shadow: 0 0 10px rgba(0,188,212,0.2);
-      animation: fadeInList 0.6s ease forwards;
-      opacity: 0;
     }
-
-    ul li:nth-child(1) { animation-delay: 0.2s; }
-    ul li:nth-child(2) { animation-delay: 0.4s; }
-    ul li:nth-child(3) { animation-delay: 0.6s; }
-    ul li:nth-child(4) { animation-delay: 0.8s; }
-    ul li:nth-child(5) { animation-delay: 1s; }
 
     ul li:hover {
       background-color: rgba(0,188,212,0.2);
@@ -182,14 +163,9 @@
       to { opacity: 1; }
     }
 
-    @keyframes fadeInList {
-      to { opacity: 1; transform: translateX(0); }
-      from { opacity: 0; transform: translateX(-20px); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { text-shadow: 0 0 10px var(--blue); }
-      50% { text-shadow: 0 0 20px var(--blue); }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 600px) {
@@ -207,13 +183,13 @@
 </header>
 
 <nav>
-  <a href="#netykieta">🧑‍🤝‍🧑 Netykieta</a>
-  <a href="#bezpieczenstwo">🔐 Bezpieczeństwo</a>
-  <a href="#tozsamosc">🧠 Tożsamość</a>
-  <a href="#wiarygodnosc">🔎 Wiarygodność</a>
+  <a href="netykieta">🧑‍🤝‍🧑 Netykieta</a>
+  <a href="bezpieczenstwo">🔐 Bezpieczeństwo</a>
+  <a href="tozsamosc">🧠 Tożsamość</a>
+  <a href="wiarygodnosc">🔎 Wiarygodność</a>
 </nav>
 
-<section id="netykieta" class="scroll-fade">
+<section id="netykieta">
   <h2>🧑‍🤝‍🧑 Netykieta – dobre zachowanie w sieci</h2>
   <ul>
     <li>Szanuj innych użytkowników</li>
@@ -224,11 +200,28 @@
   </ul>
 </section>
 
-<section id="bezpieczenstwo" class="scroll-fade">
+<section id="bezpieczenstwo">
   <h2>🔐 Bezpieczeństwo – jak chronić siebie i swoje dane</h2>
   <ul>
     <li>Używaj silnych, unikalnych haseł</li>
     <li>Nie udostępniaj danych osobowych obcym</li>
     <li>Aktualizuj oprogramowanie i antywirusa</li>
     <li>Nie klikaj w podejrzane linki</li>
-    <li>Korzystaj z dwustopniowej
+    <li>Korzystaj z dwustopniowej weryfikacji</li>
+  </ul>
+</section>
+
+<section id="tozsamosc">
+  <h2>🧠 Cyfrowa tożsamość – jak dbać o swój wizerunek online</h2>
+  <ul>
+    <li>Zastanów się, zanim coś opublikujesz</li>
+    <li>Buduj pozytywny obraz siebie w sieci</li>
+    <li>Nie publikuj kompromitujących zdjęć</li>
+    <li>Dbaj o prywatność na portalach społecznościowych</li>
+    <li>Pamiętaj, że internet „nie zapomina”</li>
+  </ul>
+</section>
+
+<section id="wiarygodnosc">
+  <h2
+  
