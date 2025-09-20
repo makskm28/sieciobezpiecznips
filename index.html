@@ -8,43 +8,36 @@
   <style>
     :root {
       --blue: #00bcd4;
-      --white: #ffffff;
-      --black: #0a0a0a;
+      --dark: #0a0a0a;
       --glass: rgba(255, 255, 255, 0.08);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      --white: #fff;
     }
 
     body {
+      margin: 0;
       font-family: 'Quicksand', sans-serif;
-      background: radial-gradient(circle at top left, #0a0a0a, #1a1a1a);
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
       color: var(--white);
       overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(to right, #00bcd4, #2196f3);
-      padding: 80px 20px;
       text-align: center;
-      color: var(--white);
+      padding: 80px 20px;
+      background: linear-gradient(to right, #00bcd4, #2196f3);
       box-shadow: 0 0 30px #00bcd4;
       animation: fadeInDown 1s ease-out;
-      border-bottom: 2px solid #00bcd4;
     }
 
     header h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 3.5em;
-      text-shadow: 0 0 15px #ffffff;
-      letter-spacing: 2px;
+      font-size: 3em;
+      text-shadow: 0 0 15px #fff;
+      animation: pulseGlow 2.5s infinite;
     }
 
     header p {
-      font-size: 1.3em;
+      font-size: 1.2em;
       opacity: 0.85;
       margin-top: 10px;
     }
@@ -53,103 +46,90 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      background-color: var(--black);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      animation: fadeIn 1.5s ease;
+      background-color: var(--dark);
+      padding: 20px;
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
     }
 
     nav a {
-      position: relative;
-      padding: 15px 30px;
-      font-size: 1.1em;
       color: var(--blue);
       text-decoration: none;
       font-weight: bold;
-      border-radius: 40px;
       margin: 10px;
-      background-color: var(--glass);
-      backdrop-filter: blur(12px);
+      padding: 12px 25px;
       border: 2px solid var(--blue);
-      box-shadow: 0 0 10px rgba(0,188,212,0.3);
-      overflow: hidden;
+      border-radius: 30px;
+      background-color: var(--glass);
+      backdrop-filter: blur(10px);
       transition: all 0.4s ease;
-    }
-
-    nav a::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(0,188,212,0.3), transparent 70%);
-      transform: rotate(45deg);
-      transition: opacity 0.4s;
-      opacity: 0;
-    }
-
-    nav a:hover::before {
-      opacity: 1;
+      position: relative;
+      overflow: hidden;
     }
 
     nav a:hover {
-      background-color: #00bcd4;
+      background-color: var(--blue);
       color: white;
       transform: scale(1.05);
-      box-shadow: 0 0 20px #00bcd4;
+      box-shadow: 0 0 20px var(--blue);
     }
 
     section {
-      max-width: 1000px;
+      max-width: 900px;
       margin: 60px auto;
       background: var(--glass);
       backdrop-filter: blur(20px);
       padding: 40px;
-      border-radius: 25px;
+      border-radius: 20px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.7);
       animation: slideUp 1s ease;
-      border: 1px solid #00bcd4;
+      border: 1px solid var(--blue);
     }
 
     h2 {
-      color: var(--blue);
-      margin-bottom: 25px;
-      font-size: 2em;
-      text-shadow: 0 0 10px var(--blue);
       font-family: 'Orbitron', sans-serif;
+      font-size: 2em;
+      color: var(--blue);
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px var(--blue);
     }
 
     ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
     }
 
     ul li {
       background-color: rgba(255,255,255,0.05);
       margin-bottom: 15px;
-      padding: 18px 25px;
+      padding: 15px 20px;
       border-left: 6px solid var(--blue);
       border-radius: 10px;
       transition: background-color 0.3s, transform 0.3s;
-      box-shadow: 0 0 10px rgba(0,188,212,0.2);
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
     }
+
+    ul li:nth-child(1) { animation-delay: 0.2s; }
+    ul li:nth-child(2) { animation-delay: 0.4s; }
+    ul li:nth-child(3) { animation-delay: 0.6s; }
+    ul li:nth-child(4) { animation-delay: 0.8s; }
+    ul li:nth-child(5) { animation-delay: 1s; }
 
     ul li:hover {
       background-color: rgba(0,188,212,0.2);
-      transform: translateX(12px);
+      transform: translateX(10px);
     }
 
     footer {
       text-align: center;
       padding: 25px;
-      color: #aaa;
       font-size: 0.9em;
+      color: #aaa;
       background-color: #111;
-      border-top: 2px solid #00bcd4;
+      border-top: 2px solid var(--blue);
       box-shadow: 0 -4px 12px rgba(0,0,0,0.5);
     }
 
@@ -158,18 +138,24 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
     @keyframes slideUp {
       from { opacity: 0; transform: translateY(60px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 10px #00bcd4; }
+      50% { text-shadow: 0 0 25px #00bcd4; }
+      100% { text-shadow: 0 0 10px #00bcd4; }
+    }
+
     @media (max-width: 600px) {
-      header h1 { font-size: 2.2em; }
+      header h1 { font-size: 2em; }
       nav a { padding: 10px 20px; }
       section { margin: 30px; padding: 25px; }
     }
@@ -183,10 +169,10 @@
 </header>
 
 <nav>
-  <a href="netykieta">🧑‍🤝‍🧑 Netykieta</a>
-  <a href="bezpieczenstwo">🔐 Bezpieczeństwo</a>
-  <a href="tozsamosc">🧠 Tożsamość</a>
-  <a href="wiarygodnosc">🔎 Wiarygodność</a>
+  <a href="#netykieta">🧑‍🤝‍🧑 Netykieta</a>
+  <a href="#bezpieczenstwo">🔐 Bezpieczeństwo</a>
+  <a href="#tozsamosc">🧠 Tożsamość</a>
+  <a href="#wiarygodnosc">🔎 Wiarygodność</a>
 </nav>
 
 <section id="netykieta">
@@ -223,5 +209,12 @@
 </section>
 
 <section id="wiarygodnosc">
-  <h2
+  <h2>🔎 Wiarygodność informacji – jak rozpoznawać fałszywe treści</h2>
+  <ul>
+    <li>Sprawdzaj źródła informacji</li>
+    <li>Porównuj wiadomości z różnych portali</li>
+    <li>Unikaj sensacyjnych nagłówków</li>
+    <li>Korzystaj z wiarygodnych serwisów</li>
+    <li>Nie udostępniaj niesprawdzonych informacji</li>
+    
   
