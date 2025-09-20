@@ -207,7 +207,6 @@
       <div class="mark">S</div>
       <div class="title">
         <h1 id="site-title">Bezpieczna Sieć — przewodnik</h1>
-        <p>Prosta strona egzaminacyjna o netykiecie i bezpieczeństwie online</p>
       </div>
     </div>
 
@@ -226,12 +225,9 @@
       <div class="hero">
         <div>
           <div class="typing" id="typing">Witaj — nauczymy Cię, jak bezpiecznie korzystać z internetu.</div>
-          <div class="sub">Szablon zawiera przygotowanie do możliwych pytań egzaminacyjnych i przykłady odpowiedzi.</div>
         </div>
         <div style="margin-left:auto; text-align:right">
-          <div class="pill">Egzamin: Informatyka</div>
           <div style="height:8px"></div>
-          <div style="font-size:12px; color:var(--muted)">Animacje: dużo ✨</div>
         </div>
       </div>
 
@@ -241,43 +237,24 @@
 
       <div style="height:8px"></div>
       <div class="controls">
-        <button class="btn" id="download-notes">Pobierz notatkę (PDF)</button>
         <button class="btn ghost" id="toggle-motion">Zredukuj animacje</button>
       </div>
 
       <div class="float-ring" aria-hidden="true"></div>
       <div class="diagonal" aria-hidden="true"></div>
     </section>
-
-    <!-- RIGHT: sidebar -->
-    <aside class="sidebar" aria-label="Pytania egzaminacyjne">
-      <h4>Możliwe pytania na egzaminie</h4>
-      <div class="exam-q" id="exam-questions">
-        <div class="q">1) Jaką nazwę nadałeś(aś) stronie i dlaczego?</div>
-        <div class="q">2) Z jakiego kreatora strony byś skorzystał(a)?</div>
-        <div class="q">3) Jakie są najważniejsze zasady netykiety?</div>
-        <div class="q">4) Jak chronić dane osobowe i hasła?</div>
-        <div class="q">5) Co oznacza "cyfrowa tożsamość"?</div>
-        <div class="q">6) Jak sprawdzić, czy informacja w sieci jest prawdziwa?</div>
-        <div class="q">7) Czego dowiedziałeś się od bliskich o bezpieczeństwie?</div>
-        <div class="q">8) Która zakładka jest najważniejsza i dlaczego?</div>
-      </div>
+    
 
       <div style="height:12px"></div>
       <div class="pill">Szybkie wskazówki</div>
       <ul style="margin-top:12px; padding-left:18px; color:var(--muted); line-height:1.6; font-size:13px">
-        <li>Silne hasło = długi + unikatowy + menedżer</li>
         <li>Nie udostępniaj PESEL/hasła/zdjęć dokumentów</li>
         <li>Uwierzytelnianie dwuskładnikowe (2FA)</li>
+        <li>Silne haslo</li>
       </ul>
     </aside>
 
   </main>
-
-  <footer>
-    <small>Gotowe do pokazania na egzaminie — powodzenia! (Animacje są opcjonalne 😉)</small>
-  </footer>
-</div>
 
 <script>
 /* ============================================================
@@ -425,9 +402,7 @@ const content = {
       {h:'Kontroluj prywatność', t:'Sprawdź ustawienia prywatności w mediach społecznościowych.'},
       {h:'Publikuj świadomie', t:'Treści publiczne widzą wszyscy — zastanów się, czy chcesz to tam mieć na zawsze.'},
       {h:'Separuj konta', t:'Oddziel konto prywatne od zawodowego / edukacyjnego.'},
-      {h:'Monitoruj wizerunek', t:'Regularnie wyszukuj swoje imię w Google, usuń kompromitujące treści.'},
     ],
-    extra: 'Wyobraź sobie, że rekruter widzi Twoje profile — co zobaczy?'
   },
 
   wiarygodnosc: {
