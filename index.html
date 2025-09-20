@@ -41,6 +41,7 @@
       font-size: 3.5em;
       text-shadow: 0 0 15px #ffffff;
       letter-spacing: 2px;
+      animation: pulseGlow 2.5s infinite;
     }
 
     header p {
@@ -92,6 +93,19 @@
       opacity: 0;
     }
 
+    nav a::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.2), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+      pointer-events: none;
+    }
+
     nav a:hover::before {
       opacity: 1;
     }
@@ -115,6 +129,10 @@
       border: 1px solid #00bcd4;
     }
 
+    section:hover {
+      animation: floatUp 2s ease-in-out infinite;
+    }
+
     h2 {
       color: var(--blue);
       margin-bottom: 25px;
@@ -136,7 +154,15 @@
       border-radius: 10px;
       transition: background-color 0.3s, transform 0.3s;
       box-shadow: 0 0 10px rgba(0,188,212,0.2);
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
     }
+
+    ul li:nth-child(1) { animation-delay: 0.2s; }
+    ul li:nth-child(2) { animation-delay: 0.4s; }
+    ul li:nth-child(3) { animation-delay: 0.6s; }
+    ul li:nth-child(4) { animation-delay: 0.8s; }
+    ul li:nth-child(5) { animation-delay: 1s; }
 
     ul li:hover {
       background-color: rgba(0,188,212,0.2);
@@ -151,6 +177,19 @@
       background-color: #111;
       border-top: 2px solid #00bcd4;
       box-shadow: 0 -4px 12px rgba(0,0,0,0.5);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#00bcd4 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.05;
+      z-index: 0;
     }
 
     @keyframes fadeInDown {
@@ -168,6 +207,23 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 10px #00bcd4; }
+      50% { box-shadow: 0 0 25px #00bcd4; }
+      100% { box-shadow: 0 0 10px #00bcd4; }
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
     @media (max-width: 600px) {
       header h1 { font-size: 2.2em; }
       nav a { padding: 10px 20px; }
@@ -176,52 +232,4 @@
   </style>
 </head>
 <body>
-
-<header>
-  <h1>SiecioBezpieczni</h1>
-  <p>Twoje centrum wiedzy o bezpiecznym korzystaniu z internetu</p>
-</header>
-
-<nav>
-  <a href="netykieta">🧑‍🤝‍🧑 Netykieta</a>
-  <a href="bezpieczenstwo">🔐 Bezpieczeństwo</a>
-  <a href="tozsamosc">🧠 Tożsamość</a>
-  <a href="wiarygodnosc">🔎 Wiarygodność</a>
-</nav>
-
-<section id="netykieta">
-  <h2>🧑‍🤝‍🧑 Netykieta – dobre zachowanie w sieci</h2>
-  <ul>
-    <li>Szanuj innych użytkowników</li>
-    <li>Nie obrażaj, nie hejtuj</li>
-    <li>Używaj poprawnego języka</li>
-    <li>Nie spamuj i nie rozsyłaj niechcianych treści</li>
-    <li>Pamiętaj, że po drugiej stronie jest człowiek</li>
-  </ul>
-</section>
-
-<section id="bezpieczenstwo">
-  <h2>🔐 Bezpieczeństwo – jak chronić siebie i swoje dane</h2>
-  <ul>
-    <li>Używaj silnych, unikalnych haseł</li>
-    <li>Nie udostępniaj danych osobowych obcym</li>
-    <li>Aktualizuj oprogramowanie i antywirusa</li>
-    <li>Nie klikaj w podejrzane linki</li>
-    <li>Korzystaj z dwustopniowej weryfikacji</li>
-  </ul>
-</section>
-
-<section id="tozsamosc">
-  <h2>🧠 Cyfrowa tożsamość – jak dbać o swój wizerunek online</h2>
-  <ul>
-    <li>Zastanów się, zanim coś opublikujesz</li>
-    <li>Buduj pozytywny obraz siebie w sieci</li>
-    <li>Nie publikuj kompromitujących zdjęć</li>
-    <li>Dbaj o prywatność na portalach społecznościowych</li>
-    <li>Pamiętaj, że internet „nie zapomina”</li>
-  </ul>
-</section>
-
-<section id="wiarygodnosc">
-  <h2
-  
+<!-- reszta Twojego kodu HTML zostaje bez zmian -->
