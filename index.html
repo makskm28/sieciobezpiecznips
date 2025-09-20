@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>SiecioBezpieczni</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #00bcd4;
+      --white: #ffffff;
+      --black: #0a0a0a;
+      --glass: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: radial-gradient(circle at top left, #0a0a0a, #1a1a1a);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(to right, #00bcd4, #2196f3);
+      padding: 80px 20px;
+      text-align: center;
+      color: var(--white);
+      box-shadow: 0 0 30px #00bcd4;
+      animation: fadeInDown 1s ease-out;
+      border-bottom: 2px solid #00bcd4;
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5em;
+      text-shadow: 0 0 15px #ffffff;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.3em;
+      opacity: 0.85;
+      margin-top: 10px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: var(--black);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      animation: fadeIn 1.5s ease;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    nav a {
+      position: relative;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 40px;
+      margin: 10px;
+      background-color: var(--glass);
+      backdrop-filter: blur(12px);
+      border: 2px solid var(--blue);
+      box-shadow: 0 0 10px rgba(0,188,212,0.3);
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,188,212,0.3), transparent 70%);
+      transform: rotate(45deg);
+      transition: opacity 0.4s;
+      opacity: 0;
+    }
+
+    nav a:hover::before {
+      opacity: 1;
+    }
+
+    nav a:hover {
+      background-color: #00bcd4;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #00bcd4;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 60px auto;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+      animation: slideUp 1s ease;
+      border: 1px solid #00bcd4;
+    }
+
+    h2 {
+      color: var(--blue);
+      margin-bottom: 25px;
+      font-size: 2em;
+      text-shadow: 0 0 10px var(--blue);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      background-color: rgba(255,255,255,0.05);
+      margin-bottom: 15px;
+      padding: 18px 25px;
+      border-left: 6px solid var(--blue);
+      border-radius: 10px;
+      transition: background-color 0.3s, transform 0.3s;
+      box-shadow: 0 0 10px rgba(0,188,212,0.2);
+    }
+
+    ul li:hover {
+      background-color: rgba(0,188,212,0.2);
+      transform: translateX(12px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #aaa;
+      font-size: 0.9em;
+      background-color: #111;
+      border-top: 2px solid #00bcd4;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.5);
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 2.2em; }
+      nav a { padding: 10px 20px; }
+      section { margin: 30px; padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>SiecioBezpieczni</h1>
+  <p>Twoje centrum wiedzy o bezpiecznym korzystaniu z internetu</p>
+</header>
+
+<nav>
+  <a href="#netykieta">🧑‍🤝‍🧑 Netykieta</a>
+  <a href="#bezpieczenstwo">🔐 Bezpieczeństwo</a>
+  <a href="#tozsamosc">🧠 Tożsamość</a>
+  <a href="#wiarygodnosc">🔎 Wiarygodność</a>
+</nav>
+
+<section id="netykieta">
+  <h2>🧑‍🤝‍🧑 Netykieta – dobre zachowanie w sieci</h2>
+  <ul>
+    <li>Szanuj innych użytkowników</li>
+    <li>Nie obrażaj, nie hejtuj</li>
+    <li>Używaj poprawnego języka</li>
+    <li>Nie spamuj i nie rozsyłaj niechcianych treści</li>
+    <li>Pamiętaj, że po drugiej stronie jest człowiek</li>
+  </ul>
+</section>
+
+<section id="bezpieczenstwo">
+  <h2>🔐 Bezpieczeństwo – jak chronić siebie i swoje dane</h2>
+  <ul>
+    <li>Używaj silnych, unikalnych haseł</li>
+    <li>Nie udostępniaj danych osobowych obcym</li>
+    <li>Aktualizuj oprogramowanie i antywirusa</li>
+    <li>Nie klikaj w podejrzane linki</li>
+    <li>Korzystaj z dwustopniowej weryfikacji</li>
+  </ul>
+</section>
+
+<section id="tozsamosc">
+  <h2>🧠 Cyfrowa tożsamość – jak dbać o swój wizerunek online</h2>
+  <ul>
+    <li>Zastanów się, zanim coś opublikujesz</li>
+    <li>Buduj pozytywny obraz siebie w sieci</li>
+    <li>Nie publikuj kompromitujących zdjęć</li>
+    <li>Dbaj o prywatność na portalach społecznościowych</li>
+    <li>Pamiętaj, że internet „nie zapomina”</li>
+  </ul>
+</section>
+
+<section id="wiarygodnosc">
+  <h2
