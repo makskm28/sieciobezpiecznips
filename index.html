@@ -1,618 +1,98 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Bezpieczna Sieć — Netykieta · Bezpieczeństwo · Tożsamość · Wiarygodność</title>
-<meta name="description" content="Strona egzaminacyjna o zasadach bezpiecznego korzystania z internetu. Netykieta, bezpieczeństwo, cyfrowa tożsamość i wiarygodność informacji."/>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300173b'/%3E%3Ctext x='50' y='58' font-size='46' text-anchor='middle' fill='%23fff' font-family='Arial, sans-serif'%3ES%3C/text%3E%3C/svg%3E" />
-<style>
-  :root{
-    --bg:#000814;   /* very dark blue */
-    --accent:#00a6ff; /* bright blue */
-    --muted:#bfc8d6; /* light grey-blue */
-    --card:#0b1220; /* dark card */
-    --glass: rgba(255,255,255,0.04);
-    --glass-2: rgba(255,255,255,0.02);
-    --glass-3: rgba(255,255,255,0.06);
-    --radius:14px;
-    --ease: cubic-bezier(.19,1,.22,1);
-    --text:#e6eef8;
-  }
+  <meta charset="UTF-8">
+  <title>SiecioBezpieczni</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffffff, #e0f7ff, #001f3f);
+      color: #000;
+      animation: fadeIn 2s ease-in;
+    }
 
-  /* reset & base */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: radial-gradient(circle at 10% 10%, rgba(0,166,255,0.06), transparent 5%),
-                linear-gradient(180deg, #000814 0%, #02132b 60%, #061226 100%);
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    overflow-x:hidden;
-    min-height:100vh;
-  }
+    header {
+      background: linear-gradient(to right, #001f3f, #0074D9);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 2em;
+      animation: slideDown 1s ease-out;
+    }
 
-  /* particle canvas covers */
-  #particle-wrap{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    mix-blend-mode:screen; opacity:0.9;
-  }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #f0f0f0;
+      animation: fadeIn 2s ease-in;
+    }
 
-  /* container */
-  .site{
-    position:relative; z-index:2; max-width:1100px; margin:40px auto; padding:28px;
-  }
+    nav a {
+      padding: 15px 25px;
+      text-decoration: none;
+      color: #0074D9;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
 
-  header{
-    display:flex; gap:16px; align-items:center; justify-content:space-between;
-    margin-bottom:18px;
-  }
+    nav a:hover {
+      background-color: #0074D9;
+      color: white;
+    }
 
-  .logo{
-    display:flex; gap:12px; align-items:center;
-  }
-  .logo .mark{
-    width:58px; height:58px; border-radius:12px;
-    background:linear-gradient(135deg,var(--accent),#8bd2ff);
-    display:grid; place-items:center; color:#001223; font-weight:800; font-size:20px;
-    box-shadow: 0 6px 18px rgba(0,166,255,0.12), inset 0 -6px 18px rgba(255,255,255,0.06);
-    transform:rotate(-8deg);
-    animation: mark-pop 900ms var(--ease) both;
-  }
-  @keyframes mark-pop{ from{transform:rotate(-8deg) scale(.6); opacity:0} to{transform:rotate(-8deg) scale(1); opacity:1} }
+    section {
+      padding: 30px;
+      animation: fadeIn 2s ease-in;
+    }
 
-  .title{
-    line-height:1;
-  }
-  .title h1{ margin:0; font-size:18px; letter-spacing:0.2px; color:var(--text) }
-  .title p{ margin:0; font-size:12px; color:var(--muted) }
+    h2 {
+      color: #001f3f;
+    }
 
-  /* nav tabs */
-  nav.tabs{
-    background:var(--glass); border-radius:12px; padding:6px; display:flex; gap:6px;
-    box-shadow: 0 6px 24px rgba(3,8,23,0.6);
-    backdrop-filter: blur(6px);
-  }
-  nav.tabs button{
-    border:0; background:transparent; color:var(--muted); padding:10px 16px; border-radius:10px;
-    cursor:pointer; font-weight:600; font-size:14px; transition:all 300ms var(--ease);
-  }
-  nav.tabs button.active{
-    background: linear-gradient(90deg, rgba(0,166,255,0.12), rgba(255,255,255,0.02));
-    color:var(--text); box-shadow: 0 8px 18px rgba(0,166,255,0.08);
-    transform:translateY(-3px);
-  }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-  main.card{
-    margin-top:18px; display:grid; grid-template-columns: 1fr 360px; gap:20px;
-  }
-
-  /* left column: content */
-  .panel{
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-    border-radius:var(--radius); padding:20px; min-height:520px; position:relative;
-    box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-    overflow:hidden;
-  }
-
-  .panel .hero{
-    display:flex; gap:18px; align-items:flex-start;
-  }
-  .typing{
-    font-size:20px; font-weight:700; letter-spacing:0.2px;
-    color:var(--text);
-  }
-  .sub{
-    color:var(--muted); margin-top:8px; font-size:13px;
-  }
-
-  /* cards grid inside panel */
-  .cards{
-    display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-top:18px;
-  }
-  .card-item{
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:12px; padding:14px; min-height:110px; position:relative; overflow:hidden;
-    transition:transform 400ms var(--ease), box-shadow 400ms var(--ease);
-    border:1px solid rgba(255,255,255,0.03);
-  }
-  .card-item:hover{ transform:translateY(-8px); box-shadow: 0 18px 40px rgba(3,10,30,0.6) }
-  .card-item h3{ margin:0 0 8px 0; font-size:15px; color:var(--text) }
-  .card-item p{ margin:0; color:var(--muted); font-size:13px; line-height:1.4 }
-
-  /* right column: sidebar */
-  aside.sidebar{
-    position:relative; background:linear-gradient(180deg, rgba(0,0,0,0.16), rgba(255,255,255,0.02));
-    border-radius:var(--radius); padding:18px; min-height:520px; border:1px solid rgba(255,255,255,0.03);
-  }
-  .sidebar h4{ margin:0 0 8px 0; color:var(--text) }
-  .exam-q{ margin-top:8px; display:flex; flex-direction:column; gap:8px; }
-  .q{
-    background:var(--glass-2); padding:10px; border-radius:10px; color:var(--muted); font-size:13px;
-    transition:transform 350ms var(--ease);
-  }
-  .q:hover{ transform:translateX(6px); color:var(--text) }
-
-  /* footer and controls */
-  .controls{ display:flex; gap:12px; align-items:center; margin-top:14px; }
-  .btn{
-    background:linear-gradient(90deg,var(--accent),#49c3ff); color:#001227; border:0; padding:10px 14px;
-    border-radius:10px; font-weight:700; cursor:pointer; box-shadow: 0 8px 24px rgba(0,166,255,0.12);
-  }
-  .ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
-
-  /* tab-specific panels */
-  .tab-content{ display:none; opacity:0; transform:translateY(8px); transition: all 500ms var(--ease); }
-  .tab-content.active{ display:block; opacity:1; transform:translateY(0) }
-
-  /* animated list items */
-  .list-animated li{
-    background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(0,166,255,0.02));
-    padding:10px; margin-bottom:10px; border-radius:8px; color:var(--muted); font-size:14px;
-    border-left:4px solid rgba(0,166,255,0.12); transition: transform 350ms var(--ease);
-  }
-  .list-animated li:hover{ transform: translateX(8px); color:var(--text) }
-
-  /* fancy footer */
-  footer{
-    margin-top:24px; text-align:center; color:var(--muted); font-size:13px;
-  }
-
-  /* animated accent elements */
-  .float-ring{
-    position:absolute; width:220px; height:220px; border-radius:50%;
-    border:1px solid rgba(0,166,255,0.08); right:-60px; top:-80px; filter:blur(18px);
-    animation: ring-rotate 12s linear infinite;
-  }
-  @keyframes ring-rotate{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
-
-  /* subtle diagonal stripe overlay */
-  .diagonal{
-    position:absolute; inset:0; background-image: linear-gradient(135deg, rgba(255,255,255,0.007) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.007) 50%, rgba(255,255,255,0.007) 75%, transparent 75%, transparent);
-    background-size: 14px 14px; pointer-events:none;
-    mix-blend-mode:overlay;
-  }
-
-  /* responsive */
-  @media (max-width:980px){
-    main.card{ grid-template-columns: 1fr; }
-    .logo .mark{ width:46px; height:46px; font-size:18px }
-    .site{ margin:18px; padding:18px }
-  }
-
-  /* prefers reduced motion */
-  @media (prefers-reduced-motion: reduce){
-    *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-    #particle-wrap{ display:none }
-    .float-ring{ display:none }
-  }
-
-  /* small utilities */
-  .muted{ color:var(--muted) }
-  .accent{ color:var(--accent) }
-  .pill{ padding:6px 8px; background:var(--glass-3); border-radius:999px; font-weight:700; font-size:12px; color:var(--muted) }
-</style>
+    @keyframes slideDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- particle canvas -->
-<div id="particle-wrap"><canvas id="particles"></canvas></div>
-
-<div class="site" role="main" aria-labelledby="site-title">
   <header>
-    <div class="logo" aria-hidden="false">
-      <div class="mark">S</div>
-      <div class="title">
-        <h1 id="site-title">Bezpieczna Sieć — przewodnik</h1>
-      </div>
-    </div>
-
-    <nav class="tabs" role="tablist" aria-label="Zakładki">
-      <button class="tab-btn active" data-tab="netykieta" role="tab" aria-selected="true">Netykieta</button>
-      <button class="tab-btn" data-tab="bezpieczenstwo" role="tab">Bezpieczeństwo</button>
-      <button class="tab-btn" data-tab="tosamosc" role="tab">Cyfrowa tożsamość</button>
-      <button class="tab-btn" data-tab="wiarygodnosc" role="tab">Wiarygodność</button>
-    </nav>
+    SiecioBezpieczni – Twój przewodnik po bezpiecznym Internecie
   </header>
 
-  <main class="card">
+  <nav>
+    <a href="#netykieta">Netykieta</a>
+    <a href="#bezpieczenstwo">Bezpieczeństwo</a>
+    <a href="#tozsamosc">Cyfrowa Tożsamość</a>
+    <a href="#wiarygodnosc">Wiarygodność Informacji</a>
+  </nav>
 
-    <!-- LEFT: content -->
-    <section class="panel" aria-live="polite">
-      <div class="hero">
-        <div>
-          <div class="typing" id="typing">Witaj — nauczymy Cię, jak bezpiecznie korzystać z internetu.</div>
-        </div>
-        <div style="margin-left:auto; text-align:right">
-          <div style="height:8px"></div>
-        </div>
-      </div>
+  <section id="netykieta">
+    <h2>🧑‍💻 Netykieta</h2>
+    <p>Szanuj innych użytkowników. Nie obrażaj, nie hejtuj, nie spamuj. Pamiętaj, że po drugiej stronie jest człowiek.</p>
+  </section>
 
-      <div class="cards" id="content-area" style="margin-top:18px">
-        <!-- content populated by JS for each tab -->
-      </div>
+  <section id="bezpieczenstwo">
+    <h2>🔐 Bezpieczeństwo</h2>
+    <p>Używaj silnych haseł, nie udostępniaj danych osobowych, aktualizuj oprogramowanie i korzystaj z antywirusa.</p>
+  </section>
 
-      <div style="height:8px"></div>
-      <div class="controls">
-        <button class="btn ghost" id="toggle-motion">Zredukuj animacje</button>
-      </div>
+  <section id="tozsamosc">
+    <h2>🧠 Cyfrowa Tożsamość</h2>
+    <p>Dbaj o swój wizerunek online. Publikuj przemyślane treści, ustaw prywatność i buduj pozytywny profil.</p>
+  </section>
 
-      <div class="float-ring" aria-hidden="true"></div>
-      <div class="diagonal" aria-hidden="true"></div>
-    </section>
-    
+  <section id="wiarygodnosc">
+    <h2>🔍 Wiarygodność Informacji</h2>
+    <p>Sprawdzaj źródła, porównuj informacje, unikaj sensacyjnych nagłówków i korzystaj z fact-checkerów.</p>
+  </section>
 
-      <div style="height:12px"></div>
-      <div class="pill">Szybkie wskazówki</div>
-      <ul style="margin-top:12px; padding-left:18px; color:var(--muted); line-height:1.6; font-size:13px">
-        <li>Nie udostępniaj PESEL/hasła/zdjęć dokumentów</li>
-        <li>Uwierzytelnianie dwuskładnikowe (2FA)</li>
-        <li>Silne haslo</li>
-      </ul>
-    </aside>
-
-  </main>
-
-<script>
-/* ============================================================
-   Complete JS: particles, tab content, animations, interactions
-   ============================================================ */
-
-/* Utilities */
-const $ = (s, r=document) => r.querySelector(s);
-const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
-
-/* Particle background (canvas) */
-(function particleCanvas(){
-  const canvas = document.getElementById('particles');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w = canvas.width = innerWidth;
-  let h = canvas.height = innerHeight;
-  const DPR = Math.max(1, window.devicePixelRatio || 1);
-  canvas.width = w * DPR; canvas.height = h * DPR;
-  canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-  ctx.scale(DPR, DPR);
-
-  const max = Math.min(160, Math.floor((w*h)/9000)); // adapt count
-  const pts = [];
-  for(let i=0;i<max;i++){
-    pts.push({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      vx: (Math.random()-0.5)*0.25,
-      vy: (Math.random()-0.5)*0.25,
-      r: Math.random()*1.6+0.6,
-      hue: 200 + Math.random()*80
-    });
-  }
-  let anim = true;
-  function frame(){
-    if(!anim) return;
-    ctx.clearRect(0,0,w,h);
-    // glow gradient overlay
-    const g = ctx.createLinearGradient(0,0,w,h);
-    g.addColorStop(0, 'rgba(0,166,255,0.03)');
-    g.addColorStop(1, 'rgba(0,0,0,0.02)');
-    ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
-
-    for(let p of pts){
-      p.x += p.vx; p.y += p.vy;
-      if(p.x< -20) p.x = w+20; if(p.x> w+20) p.x = -20;
-      if(p.y< -20) p.y = h+20; if(p.y> h+20) p.y = -20;
-
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(${Math.floor(20 + p.hue/2)}, ${Math.floor(80 + p.hue/3)}, 255, 0.85)`;
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fill();
-    }
-
-    // draw lines between nearby particles
-    for(let i=0;i<pts.length;i++){
-      for(let j=i+1;j<pts.length;j++){
-        const a=pts[i], b=pts[j];
-        const dx = a.x-b.x, dy=a.y-b.y;
-        const d2 = dx*dx+dy*dy;
-        if(d2 < 10000){
-          const alpha = 0.12*(1 - Math.sqrt(d2)/100);
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(0,166,255,${alpha.toFixed(3)})`;
-          ctx.lineWidth = 0.6;
-          ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
-        }
-      }
-    }
-
-    requestAnimationFrame(frame);
-  }
-  frame();
-
-  /* responsive */
-  addEventListener('resize', ()=> {
-    w = canvas.width = innerWidth; h = canvas.height = innerHeight;
-    canvas.width = w * DPR; canvas.height = h * DPR;
-    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
-    ctx.scale(DPR, DPR);
-  });
-
-  // expose toggle
-  window.toggleParticles = (on) => {
-    anim = !!on;
-    if(anim) requestAnimationFrame(frame);
-    else ctx.clearRect(0,0,w,h);
-  };
-})();
-
-/* Typing effect header */
-(function typing(){
-  const el = document.getElementById('typing');
-  const phrases = [
-    'Witaj — nauczymy Cię, jak bezpiecznie korzystać z internetu.',
-    'Netykieta — kultura i szacunek w komunikacji online.',
-    'Bezpieczeństwo — chroń swoje hasła i dane osobowe.',
-    'Cyfrowa tożsamość — dbaj o wizerunek w sieci.',
-  ];
-  let p = 0, i = 0, forward = true;
-  function tick(){
-    const str = phrases[p];
-    if(forward){
-      i++;
-      el.textContent = str.slice(0,i);
-      if(i>=str.length){ forward=false; setTimeout(tick,1400); return;}
-    }else{
-      i--;
-      el.textContent = str.slice(0,i);
-      if(i<=0){ forward=true; p=(p+1)%phrases.length; setTimeout(tick,500); return;}
-    }
-    setTimeout(tick, 28 + Math.random()*40);
-  }
-  tick();
-})();
-
-/* Tab content data (Polish) */
-const content = {
-  netykieta: {
-    title: 'Netykieta — dobre zachowanie w sieci',
-    items: [
-      {h:'Szanuj innych', t:'Nie obrażaj, nie wyśmiewaj, unikaj mowy nienawiści. Traktuj innych tak, jak chcesz być traktowany.'},
-      {h:'Czytelna komunikacja', t:'Stosuj poprawną interpunkcję, akapituj, używaj jasnych nagłówków.'},
-      {h:'Nie spamuj', t:'Unikaj masowych wiadomości, niezamawianych linków i reklam.'},
-      {h:'Cytuj źródła', t:'Kiedy używasz cudzych treści — podaj autora i źródło.'},
-    ],
-    extra: 'Tip: Pomyśl dwa razy zanim coś opublikujesz — to, co wrzucisz do sieci, może zostać na zawsze.'
-  },
-
-  bezpieczenstwo: {
-    title: 'Bezpieczeństwo — jak chronić siebie i swoje dane',
-    items: [
-      {h:'Silne hasła', t:'Używaj długich, unikatowych haseł. Korzystaj z menedżera haseł.'},
-      {h:'2FA', t:'Włącz uwierzytelnianie dwuskładnikowe — to redukuje ryzyko przejęcia konta.'},
-      {h:'Aktualizacje', t:'Aktualizuj system i aplikacje — łatają luki bezpieczeństwa.'},
-      {h:'Uważaj na phishing', t:'Nie klikaj podejrzanych linków i nie podawaj danych na stronach, które wyglądają dziwnie.'},
-    ],
-    extra: 'Pamiętaj: nie udostępniaj haseł, numerów PESEL ani zdjęć dokumentów.'
-  },
-
-  tosamosc: {
-    title: 'Cyfrowa tożsamość — jak dbać o wizerunek online',
-    items: [
-      {h:'Kontroluj prywatność', t:'Sprawdź ustawienia prywatności w mediach społecznościowych.'},
-      {h:'Publikuj świadomie', t:'Treści publiczne widzą wszyscy — zastanów się, czy chcesz to tam mieć na zawsze.'},
-      {h:'Separuj konta', t:'Oddziel konto prywatne od zawodowego / edukacyjnego.'},
-    ],
-  },
-
-  wiarygodnosc: {
-    title: 'Wiarygodność informacji — jak rozpoznawać fałszywe treści',
-    items: [
-      {h:'Sprawdź źródło', t:'Czy artykuł pochodzi z oficjalnej, znanej strony? Kto jest autorem?'},
-      {h:'Porównaj informacje', t:'Szukaj tej samej informacji w kilku niezależnych źródłach.'},
-      {h:'Data i kontekst', t:'Sprawdź datę publikacji — stara informacja może być dziś nieaktualna.'},
-      {h:'Uważaj na emocje', t:'Fałszywki często wykorzystują szokujące nagłówki i silne emocje.'},
-    ],
-    extra: 'Jeśli coś wygląda zbyt sensacyjnie — zatrzymaj się i sprawdź.'
-  }
-};
-
-/* Render initial tab content */
-function renderTab(key){
-  const area = document.getElementById('content-area');
-  area.innerHTML = '';
-  const data = content[key];
-  const header = document.createElement('div');
-  header.innerHTML = `<h2 style="margin:0;font-size:20px;color:var(--accent)">${data.title}</h2><p class="muted" style="margin-top:6px">${data.extra}</p>`;
-  area.appendChild(header);
-
-  // add many animated cards (multiple layers -> many animations)
-  const grid = document.createElement('div'); grid.className='cards';
-  // Duplicate items to create "mnóstwo" animacji, but keep meaningful
-  for(let i=0;i<8;i++){
-    const item = data.items[i % data.items.length];
-    const card = document.createElement('article');
-    card.className = 'card-item reveal';
-    // add small animated icon
-    card.innerHTML = `
-      <div style="display:flex;align-items:center;gap:12px">
-        <div style="width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#8bd2ff);display:grid;place-items:center;font-weight:800;color:#001227; transform:rotate(${(i*15)%360}deg); box-shadow: 0 8px 20px rgba(0,166,255,0.08);">
-          ${item.h.charAt(0)}
-        </div>
-        <div style="flex:1">
-          <h3>${item.h}</h3>
-          <p>${item.t}</p>
-        </div>
-      </div>
-      <div style="height:8px"></div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <div style="flex:1;height:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,166,255,0.06));border-radius:999px;overflow:hidden">
-          <div style="height:100%; width:${40 + (i*7)%60}%; background:linear-gradient(90deg,var(--accent),#4bd1ff); border-radius:999px; transition:width 1200ms ease"></div>
-        </div>
-        <div style="font-size:11px;color:var(--muted)">${40 + (i*7)%60}%</div>
-      </div>
-    `;
-    grid.appendChild(card);
-  }
-  area.appendChild(grid);
-
-  // little animated footer note
-  const note = document.createElement('div');
-  note.style.marginTop = '16px';
-  note.innerHTML = `<small class="muted">Przykłady do omówienia na egzaminie — możesz rozwinąć każdy punkt krótkim wyjaśnieniem.</small>`;
-  area.appendChild(note);
-
-  // trigger reveal animations
-  setTimeout(()=> revealVisible(), 100);
-}
-
-/* Tabs interactivity */
-const tabs = $$('.tab-btn');
-tabs.forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    tabs.forEach(b=>{ b.classList.remove('active'); b.setAttribute('aria-selected','false')});
-    btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-    const tab = btn.dataset.tab;
-    // show content
-    renderTab(tab);
-    // hide/activate aria panels (not separate in DOM here)
-  });
-});
-
-/* Initial render */
-renderTab('netykieta');
-
-/* Reveal on scroll (IntersectionObserver) */
-function revealVisible(){
-  const reveals = $$('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    for(const e of entries){
-      if(e.isIntersecting){
-        e.target.style.transform = 'translateY(0)';
-        e.target.style.opacity = 1;
-        e.target.style.transition = 'opacity 600ms var(--ease), transform 600ms var(--ease)';
-        io.unobserve(e.target);
-      }
-    }
-  }, {threshold:0.12});
-  for(const r of reveals){
-    r.style.opacity = 0; r.style.transform = 'translateY(18px)';
-    io.observe(r);
-  }
-}
-
-/* Toggle reduced animations button */
-const toggleBtn = document.getElementById('toggle-motion');
-let reduced = false;
-toggleBtn.addEventListener('click', ()=>{
-  reduced = !reduced;
-  if(reduced){
-    document.documentElement.style.setProperty('--accent','#89baff');
-    document.documentElement.style.setProperty('--muted','#c9d6e6');
-    document.querySelector('body').style.transition = 'none';
-    // disable particles
-    window.toggleParticles(false);
-    toggleBtn.textContent = 'Animacje zredukowane';
-    toggleBtn.classList.add('ghost');
-  } else {
-    window.toggleParticles(true);
-    toggleBtn.textContent = 'Zredukuj animacje';
-    toggleBtn.classList.remove('ghost');
-  }
-});
-
-/* Fake "download notes" — generate a small printable window */
-document.getElementById('download-notes').addEventListener('click', ()=>{
-  const dataTitle = document.querySelector('.tab-btn.active').textContent;
-  const w = window.open('', '_blank', 'noopener,width=800,height=900');
-  const contentArea = document.getElementById('content-area').innerHTML;
-  const html = `
-    <html><head><meta charset="utf-8"><title>Notatka - ${dataTitle}</title>
-    <style>body{font-family:Arial,Helvetica,sans-serif;padding:28px;color:#111} h1{color:#0067a8} p{color:#333}</style>
-    </head><body>
-    <h1>Notatka: ${dataTitle}</h1>
-    ${contentArea}
-    <hr><p>Wydrukowane z: Bezpieczna Sieć</p>
-    </body></html>
-  `;
-  w.document.write(html);
-  w.document.close();
-});
-
-/* Keyboard: switch tabs with 1-4 keys */
-addEventListener('keydown', (e)=>{
-  if(e.key >= '1' && e.key <= '4'){
-    const idx = Number(e.key)-1;
-    if(tabs[idx]) tabs[idx].click();
-  }
-});
-
-/* Animated little flourish on load (small confetti-like) */
-(function tinyConfetti(){
-  const container = document.createElement('div');
-  container.style.position='fixed';
-  container.style.pointerEvents='none';
-  container.style.inset='0';
-  container.style.zIndex='4';
-  document.body.appendChild(container);
-
-  let run = true;
-  const colors = ['#00a6ff','#7ee0ff','#ffffff','#b3d9ff'];
-  function make(){
-    if(!run) return;
-    const el = document.createElement('div');
-    el.style.position='absolute';
-    el.style.left = (20 + Math.random()*60) + '%';
-    el.style.top = (10 + Math.random()*20) + '%';
-    const size = 6 + Math.random()*14;
-    el.style.width = el.style.height = size+'px';
-    el.style.borderRadius='3px';
-    el.style.background = colors[Math.floor(Math.random()*colors.length)];
-    el.style.opacity = 0.95;
-    el.style.transform = `rotate(${Math.random()*360}deg)`;
-    el.style.transition = 'transform 1500ms ease, opacity 1200ms linear, top 1800ms ease';
-    container.appendChild(el);
-    requestAnimationFrame(()=> {
-      el.style.top = (20 + Math.random()*70) + '%';
-      el.style.opacity = 0;
-      el.style.transform = `translateY(40px) rotate(${Math.random()*360}deg) scale(0.6)`;
-    });
-    setTimeout(()=> el.remove(),1900);
-  }
-  // run few times initially
-  for(let i=0;i<18;i++){ setTimeout(make, i*80) }
-  // then stop to be polite
-  setTimeout(()=> run=false, 3500);
-})();
-
-/* Accessibility: focus outlines for keyboard users */
-(function focusOutline(){
-  function handleFirstTab(e){
-    if(e.key === 'Tab'){
-      document.body.classList.add('show-focus');
-      window.removeEventListener('keydown', handleFirstTab);
-    }
-  }
-  window.addEventListener('keydown', handleFirstTab);
-})();
-
-/* Extra: small helpful answers prepped (for student to say on exam) */
-const preparedAnswers = {
-  name: 'Bezpieczna Sieć — przewodnik praktyczny',
-  whyName: 'Nazwa jest zwięzła i jasno komunikuje tematykę: bezpieczeństwo i dobre praktyki w sieci.',
-  creatorChoice: 'Wix (lub Canva) — prosty kreator, darmowy plan, gotowe szablony i możliwość publikacji.',
-  netiquette: 'Szacunek, poprawna komunikacja, nie spamować, cytować źródła i nie obrażać innych.',
-  protectData: 'Używać menedżera haseł, długich haseł, 2FA, aktualizować oprogramowanie i uważać na phishing.',
-  digitalIdentity: 'Obraz osoby w internecie: profile, posty, zdjęcia, komentarze i historia aktywności.',
-  checkTruth: 'Sprawdzać źródła, porównywać informacje, weryfikować autora i datę, używać fact-checkerów.',
-  familyLearn: 'Rodzina może uczyć ostrożności — nie podawać haseł, instalować aktualizacje, rozmawiać o zagrożeniach.',
-  mostImportantTab: 'Bezpieczeństwo — bo bez ochrony danych i kont nie da się bezpiecznie korzystać z internetu.'
-};
-
-/* If user wants to show prepared answers, allow console print (for teacher/demo) */
-console.log('Prepared short exam answers (pl):', preparedAnswers);
-
-/* End of JS */
-</script>
 </body>
 </html>
