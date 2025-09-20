@@ -7,33 +7,28 @@
 <meta name="description" content="Poradnik: zasady bezpiecznego i kulturalnego korzystania z internetu. Netykieta, ochrona danych, cyfrowy wizerunek i rozpoznawanie fałszywych treści."/>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2300173b'/%3E%3Ctext x='50' y='58' font-size='46' text-anchor='middle' fill='%23fff' font-family='Arial, sans-serif'%3ES%3C/text%3E%3C/svg%3E" />
 <style>
-/* ======================================================================
-   THEME + VARIABLES
-   ====================================================================== */
 :root{
-  --bg-900: #000814;
-  --bg-800: #02132b;
-  --accent: #00a6ff;
+  --bg-900:#000814;
+  --bg-800:#02132b;
+  --accent:#00a6ff;
   --accent-2:#4bd1ff;
-  --muted: #bfc8d6;
-  --card: rgba(255,255,255,0.03);
-  --glass: rgba(255,255,255,0.035);
-  --glass-2: rgba(255,255,255,0.02);
-  --text: #e6eef8;
-  --radius: 16px;
-  --shadow-1: 0 8px 28px rgba(2,6,23,0.6);
-  --ease: cubic-bezier(.19,1,.22,1);
+  --muted:#bfc8d6;
+  --card:rgba(255,255,255,0.03);
+  --glass:rgba(255,255,255,0.035);
+  --glass-2:rgba(255,255,255,0.02);
+  --text:#e6eef8;
+  --radius:16px;
+  --shadow-1:0 8px 28px rgba(2,6,23,0.6);
+  --ease:cubic-bezier(.19,1,.22,1);
 }
-
-/* reset */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
-  font-family:Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   background:
     radial-gradient(circle at 10% 10%, rgba(0,166,255,0.05), transparent 6%),
-    linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 60%, #061226 100%);
+    linear-gradient(180deg,var(--bg-900) 0%,var(--bg-800) 60%,#061226 100%);
   color:var(--text);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
@@ -42,10 +37,6 @@ body{
   line-height:1.5;
   -webkit-tap-highlight-color: transparent;
 }
-
-/* ======================================================================
-   LAYOUT
-   ====================================================================== */
 .container{
   max-width:1180px;
   margin:34px auto;
@@ -53,8 +44,6 @@ body{
   position:relative;
   z-index:2;
 }
-
-/* header */
 .header{
   display:flex;
   align-items:center;
@@ -68,42 +57,36 @@ body{
 .logo{
   width:64px; height:64px; border-radius:14px;
   display:grid; place-items:center;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: linear-gradient(135deg,var(--accent),var(--accent-2));
   color:#001228; font-weight:800; font-size:26px;
   transform: rotate(-8deg);
-  box-shadow: 0 10px 30px rgba(0,166,255,0.12), inset 0 -6px 22px rgba(255,255,255,0.04);
+  box-shadow:0 10px 30px rgba(0,166,255,0.12), inset 0 -6px 22px rgba(255,255,255,0.04);
 }
-.site-title h1{ margin:0; font-size:18px; letter-spacing:0.2px; color:var(--text) }
-.site-title p{ margin:0; color:var(--muted); font-size:13px }
-
-/* tab navigation */
+.site-title h1{margin:0; font-size:18px; letter-spacing:0.2px; color:var(--text)}
+.site-title p{margin:0; color:var(--muted); font-size:13px}
 .tabs{
   display:flex; gap:8px; align-items:center;
   background:var(--glass-2); padding:6px; border-radius:12px;
-  box-shadow: 0 6px 22px rgba(2,6,23,0.45);
+  box-shadow:0 6px 22px rgba(2,6,23,0.45);
 }
 .tab-btn{
   background:transparent; border:0; color:var(--muted); padding:10px 14px; border-radius:10px;
   cursor:pointer; font-weight:700; font-size:14px;
   transition: all 360ms var(--ease);
 }
-.tab-btn:focus{ outline:2px solid rgba(0,166,255,0.16); outline-offset:2px; }
+.tab-btn:focus{outline:2px solid rgba(0,166,255,0.16); outline-offset:2px;}
 .tab-btn.active{
   color:var(--text);
-  background: linear-gradient(90deg, rgba(0,166,255,0.12), rgba(255,255,255,0.02));
-  transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(0,166,255,0.06);
+  background:linear-gradient(90deg, rgba(0,166,255,0.12), rgba(255,255,255,0.02));
+  transform:translateY(-4px);
+  box-shadow:0 10px 28px rgba(0,166,255,0.06);
 }
-
-/* main grid */
 .main-grid{
   display:grid;
-  grid-template-columns: 1fr 340px;
+  grid-template-columns:1fr 340px;
   gap:22px;
   align-items:start;
 }
-
-/* left panel */
 .panel{
   background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
   border-radius: var(--radius);
@@ -113,8 +96,6 @@ body{
   position:relative;
   overflow:hidden;
 }
-
-/* right: small info column removed per request (we'll keep minimal decorative column) */
 .info-col{
   background: linear-gradient(180deg, rgba(0,0,0,0.16), rgba(255,255,255,0.02));
   border-radius: var(--radius);
@@ -122,22 +103,15 @@ body{
   min-height:400px;
   border:1px solid rgba(255,255,255,0.03);
 }
-
-/* hero */
 .hero{
   display:flex; gap:18px; align-items:flex-start;
 }
 .hero-left{flex:1}
-.hero-title{
-  font-size:22px; font-weight:800; color:var(--text);
-  letter-spacing:0.2px;
-}
-.hero-sub{ color:var(--muted); margin-top:8px; font-size:13px }
-
-/* cards grid */
+.hero-title{font-size:22px;font-weight:800;color:var(--text);letter-spacing:0.2px}
+.hero-sub{color:var(--muted);margin-top:8px;font-size:13px}
 .cards{
   display:grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap:16px;
   margin-top:18px;
 }
@@ -145,7 +119,6 @@ body{
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   padding:14px;
   border-radius:12px;
-  min-height:120px;
   border:1px solid rgba(255,255,255,0.03);
   transition: transform 420ms var(--ease), box-shadow 420ms var(--ease);
   position:relative;
@@ -153,12 +126,8 @@ body{
 }
 .card:hover{
   transform: translateY(-10px) scale(1.01);
-  box-shadow: 0 30px 50px rgba(1,8,26,0.6);
+  box-shadow:0 30px 50px rgba(1,8,26,0.6);
 }
-.card h3{ margin:0 0 8px 0; font-size:16px; color:var(--text) }
-.card p{ margin:0; color:var(--muted); font-size:14px; line-height:1.45 }
-
-/* small progress-like bar decorative (no percentages) */
 .progress{
   display:flex; gap:8px; align-items:center; margin-top:10px;
 }
@@ -170,105 +139,45 @@ body{
   height:100%; width:36%; background: linear-gradient(90deg, var(--accent), var(--accent-2));
   border-radius:999px; transition: width 1200ms ease;
 }
-.progress .label{ font-size:12px; color:var(--muted) }
-
-/* floating decorative rings */
+.progress .label{font-size:12px;color:var(--muted)}
 .float-ring{
   position:absolute; width:220px; height:220px; border-radius:50%;
   border:1px solid rgba(0,166,255,0.06); right:-60px; top:-80px; filter:blur(18px);
   animation: ring-rotate 12s linear infinite;
 }
-@keyframes ring-rotate{ from{transform:rotate(0)} to{transform:rotate(360deg)} }
-
-/* diagonal stripes overlay */
+@keyframes ring-rotate{from{transform:rotate(0)} to{transform:rotate(360deg)}}
 .diagonal{
   position:absolute; inset:0; background-image: linear-gradient(135deg, rgba(255,255,255,0.006) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.006) 50%, rgba(255,255,255,0.006) 75%, transparent 75%, transparent);
   background-size: 14px 14px; pointer-events:none; mix-blend-mode:overlay;
 }
-
-/* footer - decorative only */
-.footer{
-  margin-top:26px; text-align:center; color:var(--muted); font-size:13px;
-}
-
-/* reveal animation helper */
+.footer{margin-top:26px; text-align:center; color:var(--muted); font-size:13px;}
 .reveal{
   opacity:0; transform:translateY(18px);
   transition: opacity 700ms var(--ease), transform 700ms var(--ease);
 }
-
-/* ======================================================================
-   RESPONSIVE RULES (explicit media queries for many breakpoints)
-   ====================================================================== */
-
-/* Large desktop */
-@media (min-width:1400px){
-  .container{ max-width:1400px; padding:40px; }
-  .logo{ width:76px; height:76px; font-size:32px; border-radius:18px; }
-  .cards{ grid-template-columns: repeat(4,1fr); }
-  .panel{ min-height:720px; padding:28px; }
-}
-
-/* Laptop / Desktop */
-@media (min-width:1025px) and (max-width:1399px){
-  .container{ max-width:1150px; padding:34px; }
-  .cards{ grid-template-columns: repeat(3,1fr); }
-  .panel{ min-height:680px; }
-}
-
-/* Tablet landscape / small laptop */
-@media (min-width:768px) and (max-width:1024px){
-  .main-grid{ grid-template-columns: 1fr 320px; }
-  .cards{ grid-template-columns: repeat(2,1fr); }
-  .panel{ min-height:640px; padding:22px; }
-  .hero-title{ font-size:20px; }
-}
-
-/* Tablet portrait and large phones */
-@media (min-width:520px) and (max-width:767px){
-  .container{ padding:20px; margin:18px; }
-  .main-grid{ grid-template-columns: 1fr; }
-  .info-col{ order:2; margin-top:14px; }
-  .panel{ order:1; }
-  .cards{ grid-template-columns: repeat(2,1fr); gap:12px; }
-  .logo{ width:56px; height:56px; font-size:22px; }
-  .site-title h1{ font-size:16px; }
-}
-
-/* Mobile small */
-@media (max-width:519px){
-  .container{ padding:14px; margin:12px; }
-  .header{ flex-direction:column; align-items:flex-start; gap:12px; }
-  .tabs{ width:100%; overflow:auto; padding:8px; }
-  .tab-btn{ white-space:nowrap; flex:0 0 auto; }
-  .main-grid{ grid-template-columns: 1fr; }
-  .cards{ grid-template-columns: 1fr; gap:12px; }
-  .panel{ padding:14px; min-height:480px; border-radius:12px; }
-  .float-ring{ display:none }
-  .hero-title{ font-size:18px }
-}
-
-/* motion reduction */
-@media (prefers-reduced-motion: reduce){
-  *{ animation:none !important; transition:none !important; scroll-behavior:auto !important; }
-  #particles-canvas{ display:none; }
-  .float-ring{ display:none; }
-}
-
-/* small util classes */
 .muted{ color:var(--muted) }
 .pill{ padding:6px 10px; background:rgba(255,255,255,0.03); border-radius:999px; font-weight:700; font-size:12px; color:var(--muted) }
 
+/* responsive */
+@media (max-width:767px){
+  .main-grid{grid-template-columns:1fr;}
+  .cards{grid-template-columns:repeat(2,1fr);}
+  .panel{min-height:480px; padding:14px; border-radius:12px;}
+  .float-ring{display:none;}
+}
+@media (max-width:519px){
+  .header{flex-direction:column;align-items:flex-start;gap:12px;}
+  .tabs{width:100%;overflow:auto;padding:8px;}
+  .tab-btn{white-space:nowrap; flex:0 0 auto;}
+  .cards{grid-template-columns:1fr;}
+  .hero-title{font-size:18px;}
+}
 </style>
 </head>
 <body>
-
-<!-- PARTICLES CANVAS -->
 <div id="particles-wrap" aria-hidden="true" style="position:fixed; inset:0; z-index:0; pointer-events:none;"></div>
 
 <div class="container" role="main" aria-labelledby="main-title">
-
-  <!-- HEADER -->
   <div class="header" role="banner">
     <div class="brand">
       <div class="logo" aria-hidden="false">S</div>
@@ -277,7 +186,6 @@ body{
         <p>Zasady dobrego i bezpiecznego korzystania z internetu</p>
       </div>
     </div>
-
     <nav class="tabs" role="tablist" aria-label="Główne zakładki">
       <button class="tab-btn active" role="tab" aria-selected="true" data-tab="netykieta">Netykieta</button>
       <button class="tab-btn" role="tab" data-tab="bezpieczenstwo">Bezpieczeństwo</button>
@@ -286,12 +194,8 @@ body{
     </nav>
   </div>
 
-  <!-- MAIN GRID -->
   <div class="main-grid" role="region">
-
-    <!-- LEFT PANEL (CONTENT) -->
     <section class="panel" aria-live="polite">
-
       <div class="hero" style="position:relative; z-index:2;">
         <div class="hero-left">
           <div class="hero-title" id="tab-heading">Netykieta — dobre zachowanie w sieci</div>
@@ -303,16 +207,11 @@ body{
           <div style="font-size:12px; color:var(--muted)">Animacje: dużo ✨</div>
         </div>
       </div>
-
-      <!-- dynamic content area where cards will be rendered -->
       <div id="content-area" style="margin-top:18px; position:relative; z-index:2"></div>
-
-      <!-- decorative elements -->
       <div class="float-ring" aria-hidden="true"></div>
       <div class="diagonal" aria-hidden="true"></div>
     </section>
 
-    <!-- RIGHT COLUMN: decorative / short references (kept minimal, not exam-related) -->
     <aside class="info-col" aria-label="Informacje pomocnicze">
       <h4 style="margin:0 0 8px 0; color:var(--text)">Praktyczne przypomnienie</h4>
       <p style="color:var(--muted); font-size:13px; margin-bottom:12px">
@@ -324,7 +223,6 @@ body{
         <li>Nie udostępniaj wrażliwych dokumentów online</li>
         <li>Weryfikuj źródła przed udostępnieniem informacji</li>
       </ul>
-
       <div style="height:18px"></div>
       <div style="display:flex; gap:8px; flex-wrap:wrap">
         <div class="pill">Prywatność</div>
@@ -332,392 +230,67 @@ body{
         <div class="pill">Bezpieczeństwo</div>
       </div>
     </aside>
-
   </div>
 
   <div class="footer" style="position:relative; z-index:2">
     <small class="muted">Projekt wizualny: czarno-biało-niebieski • Animacje dostępne, można wyłączyć w ustawieniach przeglądarki</small>
   </div>
-
 </div>
 
-<!-- FULL JS: particles, tab rendering, animations -->
 <script>
-/* ======================================================================
-   Helper selectors
-   ====================================================================== */
-const $ = (s, r=document) => r.querySelector(s);
-const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
-
-/* ======================================================================
-   PARTICLE BACKGROUND (canvas) - responsive, performant
-   ====================================================================== */
-(function initParticles(){
-  const wrap = document.getElementById('particles-wrap');
-  if(!wrap) return;
-  const canvas = document.createElement('canvas');
-  canvas.id = 'particles-canvas';
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  canvas.style.display = 'block';
-  canvas.style.position = 'absolute';
-  canvas.style.inset = '0';
-  canvas.style.zIndex = 0;
-  canvas.style.pointerEvents = 'none';
-  wrap.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-
-  let DPR = Math.max(1, window.devicePixelRatio || 1);
-  let w = innerWidth;
-  let h = innerHeight;
-  function resize(){
-    DPR = Math.max(1, window.devicePixelRatio || 1);
-    w = innerWidth; h = innerHeight;
-    canvas.width = Math.floor(w * DPR);
-    canvas.height = Math.floor(h * DPR);
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-  resize();
-
-  let particles = [];
-  function createParticles(){
-    particles = [];
-    const area = w * h;
-    const count = Math.min(180, Math.max(40, Math.floor(area / 15000)));
-    for(let i=0;i<count;i++){
-      particles.push({
-        x: Math.random()*w,
-        y: Math.random()*h,
-        vx: (Math.random()-0.5)*0.35,
-        vy: (Math.random()-0.5)*0.35,
-        r: Math.random()*1.8 + 0.6,
-        hue: 200 + Math.random()*60,
-      });
-    }
-  }
-  createParticles();
-
-  function draw(){
-    ctx.clearRect(0,0,w,h);
-    // subtle gradient overlay
-    const g = ctx.createLinearGradient(0,0,w,h);
-    g.addColorStop(0,'rgba(0,166,255,0.02)');
-    g.addColorStop(1,'rgba(0,0,0,0.02)');
-    ctx.fillStyle = g;
-    ctx.fillRect(0,0,w,h);
-
-    // draw particles
-    for(const p of particles){
-      p.x += p.vx;
-      p.y += p.vy;
-      if(p.x < -20) p.x = w + 20;
-      if(p.x > w + 20) p.x = -20;
-      if(p.y < -20) p.y = h + 20;
-      if(p.y > h + 20) p.y = -20;
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(${Math.floor(30 + p.hue/2)}, ${Math.floor(90 + p.hue/3)}, 255, 0.9)`;
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fill();
-    }
-
-    // lines
-    for(let i=0;i<particles.length;i++){
-      for(let j=i+1;j<particles.length;j++){
-        const a = particles[i], b = particles[j];
-        const dx = a.x - b.x;
-        const dy = a.y - b.y;
-        const d2 = dx*dx + dy*dy;
-        if(d2 < 10000){
-          const alpha = 0.12 * (1 - Math.sqrt(d2)/100);
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(0,166,255,${alpha.toFixed(3)})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(a.x,a.y);
-          ctx.lineTo(b.x,b.y);
-          ctx.stroke();
-        }
-      }
-    }
-
-    requestAnimationFrame(draw);
-  }
-  let anim = true;
-  draw();
-
-  let tid;
-  addEventListener('resize', ()=>{
-    clearTimeout(tid);
-    tid = setTimeout(()=>{
-      resize();
-      createParticles();
-    }, 120);
-  });
-
-  // expose toggle fn
-  window.toggleParticles = (on) => {
-    anim = !!on;
-    if(anim) requestAnimationFrame(draw);
-    else ctx.clearRect(0,0,w,h);
-  };
-})();
-
-/* ======================================================================
-   TYPING HEADER EFFECT (subtle)
-   ====================================================================== */
-(function typing(){
-  const el = document.querySelector('.hero-title');
-  if(!el) return;
-  const phrases = [
-    'Netykieta — dobre zachowanie w sieci',
-    'Bezpieczeństwo — ochrona danych i kont',
-    'Cyfrowa tożsamość — dbaj o swój wizerunek',
-    'Wiarygodność — jak rozpoznawać fałszywe treści'
-  ];
-  let p = 0, i = 0, forward = true;
-  function tick(){
-    const str = phrases[p];
-    if(forward){
-      i++;
-      el.textContent = str.slice(0,i);
-      if(i>=str.length){ forward=false; setTimeout(tick,1200); return; }
-    } else {
-      i--;
-      el.textContent = str.slice(0,i);
-      if(i<=0){ forward=true; p=(p+1)%phrases.length; setTimeout(tick,500); return; }
-    }
-    setTimeout(tick, 28 + Math.random()*30);
-  }
-  tick();
-})();
-
-/* ======================================================================
-   CONTENT DATA (Polish) — NO REFERENCES TO EXAM / NOTATKA / PYTANIA
-   ====================================================================== */
 const DATA = {
-  netykieta: {
-    title: 'Netykieta — dobre zachowanie w sieci',
-    intro: 'Kultura online: proste zasady które ułatwiają komunikację i ograniczają konflikty.',
-    items: [
+  netykieta:{
+    title:'Netykieta — dobre zachowanie w sieci',
+    intro:'Kultura online: proste zasady które ułatwiają komunikację i ograniczają konflikty.',
+    items:[
       {h:'Szanuj innych', t:'Nie obrażaj, nie wyśmiewaj, staraj się zachować kulturę rozmowy.'},
       {h:'Czytelność', t:'Używaj akapitów, poprawnej interpunkcji i jasnych nagłówków.'},
       {h:'Odpowiedzialność', t:'Przemyśl, co udostępniasz — treści mogą zostać w sieci długo.'},
-      {h:'Brak spamu', t:'Nie wysyłaj niechcianych wiadomości, reklam ani masowych linków.'},
+      {h:'Brak spamu', t:'Nie wysyłaj niechcianych wiadomości, reklam ani masowych linków.'}
     ]
   },
-
-  bezpieczenstwo: {
-    title: 'Bezpieczeństwo — jak chronić siebie i swoje dane',
-    intro: 'Podstawowe praktyki, które znacząco poprawiają bezpieczeństwo w sieci.',
-    items: [
+  bezpieczenstwo:{
+    title:'Bezpieczeństwo — jak chronić siebie i swoje dane',
+    intro:'Podstawowe praktyki, które znacząco poprawiają bezpieczeństwo w sieci.',
+    items:[
       {h:'Silne hasła', t:'Twórz długie, unikatowe hasła; korzystaj z menedżera haseł.'},
       {h:'Uwierzytelnianie 2FA', t:'Włącz dwuskładnikowe logowanie tam, gdzie to możliwe.'},
       {h:'Aktualizacje', t:'Regularnie instaluj aktualizacje systemu i aplikacji.'},
-      {h:'Phishing', t:'Nie klikaj podejrzanych linków, uważaj na fałszywe strony.'},
+      {h:'Phishing', t:'Nie klikaj podejrzanych linków, uważaj na fałszywe strony.'}
     ]
   },
-
-  tosamosc: {
-    title: 'Cyfrowa tożsamość — jak dbać o wizerunek online',
-    intro: 'Twój wizerunek w internecie — jak go kontrolować i poprawiać.',
-    items: [
+  tosamosc:{
+    title:'Cyfrowa tożsamość — jak dbać o wizerunek online',
+    intro:'Twój wizerunek w internecie — jak go kontrolować i poprawiać.',
+    items:[
       {h:'Kontrola prywatności', t:'Sprawdź ustawienia prywatności na portalach społecznościowych.'},
       {h:'Świadome publikacje', t:'Nie publikuj treści, które mogą zaszkodzić w przyszłości.'},
       {h:'Rozdzielenie kont', t:'Utrzymuj oddzielne konta prywatne i zawodowe, jeśli to potrzebne.'},
-      {h:'Monitorowanie', t:'Regularnie wyszukuj swoje imię i usuń kompromitujące materiały.'},
+      {h:'Monitorowanie', t:'Regularnie wyszukuj swoje imię i usuń kompromitujące materiały.'}
     ]
   },
-
-  wiarygodnosc: {
-    title: 'Wiarygodność informacji — jak rozpoznawać fałszywe treści',
-    intro: 'Sposoby weryfikacji informacji, aby nie dać się zmanipulować.',
-    items: [
+  wiarygodnosc:{
+    title:'Wiarygodność informacji — jak rozpoznawać fałszywe treści',
+    intro:'Sposoby weryfikacji informacji, aby nie dać się zmanipulować.',
+    items:[
       {h:'Sprawdź źródło', t:'Czy autor i strona są wiarygodne? Szukaj transparentności.'},
       {h:'Porównaj źródła', t:'Zobacz, czy inne serwisy potwierdzają tę samą informację.'},
       {h:'Data i kontekst', t:'Upewnij się, że informacja jest aktualna i nie wyrwana z kontekstu.'},
-      {h:'Emocjonalne nagłówki', t:'Bądź sceptyczny wobec treści, które silnie wzbudzają emocje.'},
+      {h:'Emocjonalne nagłówki', t:'Bądź sceptyczny wobec treści, które silnie wzbudzają emocje.'}
     ]
   }
 };
 
-/* ======================================================================
-   RENDER TAB CONTENT (creates many animated cards - decorative)
-   ====================================================================== */
 function renderTab(key){
-  const area = document.getElementById('content-area');
-  area.innerHTML = '';
-  const data = DATA[key];
-  // heading + intro
-  const head = document.createElement('div');
-  head.innerHTML = `<h2 style="margin:0;color:var(--accent);font-size:18px">${data.title}</h2>
-                    <p style="margin-top:8px;color:var(--muted);font-size:14px">${data.intro}</p>`;
-  area.appendChild(head);
-
-  // build cards container (with many animated items to emulate "miliard animacji")
-  const cards = document.createElement('div');
-  cards.className = 'cards';
-  // we'll render more than data.items.length to create many elements and animations
-  for(let i=0;i<9;i++){
-    const item = data.items[i % data.items.length];
-    const el = document.createElement('article');
-    el.className = 'card reveal';
-    // decorative rotating icon and progress-like bar (no percentages shown)
-    el.innerHTML = `
-      <div style="display:flex; gap:12px; align-items:flex-start;">
-        <div style="width:52px; height:52px; border-radius:12px; display:grid; place-items:center;
-                    background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:#001228; font-weight:800;
-                    transform: rotate(${(i*25)%360}deg); box-shadow: 0 10px 22px rgba(0,166,255,0.08); font-size:18px;">
-          ${item.h.charAt(0)}
-        </div>
-        <div style="flex:1">
-          <h3 style="margin:0; font-size:15px">${item.h}</h3>
-          <p style="margin-top:8px; color:var(--muted); font-size:13px; line-height:1.4">${item.t}</p>
-        </div>
-      </div>
-      <div style="height:10px"></div>
-      <div class="progress">
-        <div class="bar"><div class="fill" style="width:${30 + (i*13)%50}%"></div></div>
-        <div class="label" aria-hidden="true"></div>
-      </div>
-    `;
-    cards.appendChild(el);
-  }
-  area.appendChild(cards);
-
-  // add small extra note (non-exam)
-  const note = document.createElement('div');
-  note.style.marginTop = '16px';
-  note.innerHTML = `<small style="color:var(--muted)">Zastosuj te zasady w praktyce, aby komfortowo i bezpiecznie korzystać z internetu.</small>`;
-  area.appendChild(note);
-
-  // update heading in hero
-  const tabHeading = document.getElementById('tab-heading');
-  if(tabHeading) tabHeading.textContent = data.title;
-
-  // trigger reveal animations
-  requestAnimationFrame(() => revealVisible());
-}
-
-/* ======================================================================
-   IntersectionObserver reveal
-   ====================================================================== */
-function revealVisible(){
-  const els = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-        io.unobserve(entry.target);
-      }
-    });
-  }, {threshold: 0.12});
-  els.forEach(el=>{
-    el.style.opacity = 0; el.style.transform = 'translateY(18px)';
-    io.observe(el);
-  });
-}
-
-/* ======================================================================
-   Tabs interactivity
-   ====================================================================== */
-const tabButtons = document.querySelectorAll('.tab-btn');
-tabButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabButtons.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false')});
-    btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-    const key = btn.dataset.tab;
-    renderTab(key);
-  });
-});
-
-/* keyboard shortcuts 1-4 */
-addEventListener('keydown', (e) => {
-  if(e.key >= '1' && e.key <= '4'){
-    const idx = Number(e.key) - 1;
-    if(tabButtons[idx]) tabButtons[idx].click();
-  }
-});
-
-/* initialize first tab */
-renderTab('netykieta');
-
-/* ======================================================================
-   SMALL AESTHETIC FX: confetti-like dots on load (light)
-   ====================================================================== */
-(function flourish(){
-  const container = document.createElement('div');
-  container.style.position = 'fixed';
-  container.style.inset = '0';
-  container.style.pointerEvents = 'none';
-  container.style.zIndex = 5;
-  document.body.appendChild(container);
-
-  const colors = ['#00a6ff','#7ee0ff','#ffffff','#b3d9ff'];
-  let run = true;
-  function spawn(){
-    if(!run) return;
-    const el = document.createElement('div');
-    const size = 6 + Math.random()*14;
-    el.style.width = el.style.height = size + 'px';
-    el.style.background = colors[Math.floor(Math.random()*colors.length)];
-    el.style.borderRadius = '3px';
-    el.style.position = 'absolute';
-    el.style.left = (10 + Math.random()*80) + '%';
-    el.style.top = (6 + Math.random()*25) + '%';
-    el.style.opacity = '1';
-    el.style.transform = `rotate(${Math.random()*360}deg)`;
-    el.style.transition = 'transform 1600ms ease, top 1700ms ease, opacity 1200ms linear';
-    container.appendChild(el);
-    requestAnimationFrame(()=>{
-      el.style.top = (40 + Math.random()*50) + '%';
-      el.style.opacity = '0';
-      el.style.transform = `translateY(40px) rotate(${Math.random()*360}deg) scale(0.6)`;
-    });
-    setTimeout(()=> el.remove(), 1900);
-  }
-  for(let i=0;i<18;i++){ setTimeout(spawn, i*90) }
-  setTimeout(()=> run=false, 3600);
-})();
-
-/* ======================================================================
-   Accessibility: show focus outlines after keyboard navigation starts
-   ====================================================================== */
-(function focusOutline(){
-  function handleFirstTab(e){
-    if(e.key === 'Tab'){
-      document.body.classList.add('show-focus');
-      window.removeEventListener('keydown', handleFirstTab);
-    }
-  }
-  window.addEventListener('keydown', handleFirstTab);
-})();
-
-/* ======================================================================
-   Optional toggle function (exposed) to reduce motion/effects if needed
-   ====================================================================== */
-window.reduceEffects = function(enable){
-  if(enable){
-    document.documentElement.style.setProperty('--accent','#89baff');
-    document.documentElement.style.setProperty('--muted','#c9d6e6');
-    // stop particles
-    if(window.toggleParticles) window.toggleParticles(false);
-    // remove reveals
-    document.querySelectorAll('.reveal').forEach(el=>{
-      el.style.opacity = 1; el.style.transform = 'none';
-    });
-  } else {
-    if(window.toggleParticles) window.toggleParticles(true);
-  }
-};
-
-/* ======================================================================
-   Prevent leaking any exam-related content: none included anywhere
-   ====================================================================== */
-
-// done.
-
-</script>
-</body>
-</html>
+  const area=document.getElementById('content-area'); area.innerHTML='';
+  const data=DATA[key];
+  area.innerHTML=`<h2 style="color:var(--accent); font-size:18px">${data.title}</h2>
+                  <p style="color:var(--muted); font-size:14px; margin-top:8px">${data.intro}</p>`;
+  const cards=document.createElement('div'); cards.className='cards';
+  data.items.forEach((item,i)=>{
+    const el=document.createElement('article'); el.className='card reveal';
+    el.innerHTML=`<div style="display:flex; gap:12px; align-items:flex-start;">
+      <div style="width:52px; height:52px; border-radius:12px; display:grid; place-items:center;
+                  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+                  font-weight:800; transform: rotate(${(i*25)%360}deg); box-shadow:0 10px 22px rgba(0,166,255,0.08); font-size:18px;">
+       
