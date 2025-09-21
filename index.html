@@ -3,53 +3,101 @@
 <head>
   <meta charset="UTF-8">
   <title>SiecioBezpieczni</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #000000, #003366);
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(to right, #000000, #001f3f);
       color: white;
-      animation: fadeIn 2s ease-in;
+      overflow-x: hidden;
     }
 
     header {
       text-align: center;
-      padding: 30px;
-      background-color: #001f3f;
-      font-size: 2em;
-      font-weight: bold;
-      letter-spacing: 2px;
+      padding: 60px 20px;
+      font-size: 3em;
+      background: linear-gradient(to right, #001f3f, #003366);
+      box-shadow: 0 0 20px #00ccff;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ccff; }
+      to { text-shadow: 0 0 30px #00ccff; }
     }
 
     nav {
       display: flex;
       justify-content: center;
       background-color: #002b5c;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
 
     nav a {
       color: white;
-      padding: 15px 25px;
+      padding: 20px 30px;
       text-decoration: none;
-      transition: background-color 0.3s;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.3s;
     }
 
     nav a:hover {
       background-color: #0055aa;
+      transform: scale(1.1);
     }
 
     section {
-      padding: 30px;
+      padding: 60px 40px;
       animation: fadeIn 1.5s ease-in;
+      border-bottom: 1px solid #003366;
     }
 
     h2 {
       color: #00ccff;
+      font-size: 2em;
+      margin-bottom: 20px;
+      animation: slideIn 1s ease-out;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul li {
+      margin: 15px 0;
+      padding: 10px;
+      background-color: rgba(255,255,255,0.05);
+      border-left: 5px solid #00ccff;
+      transition: background 0.3s;
+    }
+
+    ul li:hover {
+      background-color: rgba(255,255,255,0.1);
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(-100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background-color: #001f3f;
+      font-size: 1em;
+      color: #aaa;
     }
   </style>
 </head>
@@ -58,14 +106,14 @@
   <nav>
     <a href="#netykieta">Netykieta</a>
     <a href="#bezpieczenstwo">Bezpieczeństwo</a>
-    <a href="#tozsamosc">Cyfrowa Tożsamość</a>
-    <a href="#wiarygodnosc">Wiarygodność Informacji</a>
+    <a href="#tozsamosc">Tożsamość</a>
+    <a href="#wiarygodnosc">Wiarygodność</a>
   </nav>
 
   <section id="netykieta">
-    <h2>Netykieta – dobre zachowanie w sieci</h2>
+    <h2>🧠 Netykieta – dobre zachowanie w sieci</h2>
     <ul>
-      <li>Szanuj innych użytkowników – nie obrażaj, nie hejtuj.</li>
+      <li>Szanuj innych – nie obrażaj, nie hejtuj.</li>
       <li>Unikaj spamu i wulgaryzmów.</li>
       <li>Pomagaj, zamiast krytykować.</li>
       <li>Pamiętaj, że po drugiej stronie jest człowiek.</li>
@@ -73,7 +121,7 @@
   </section>
 
   <section id="bezpieczenstwo">
-    <h2>Bezpieczeństwo – jak chronić siebie i swoje dane</h2>
+    <h2>🔐 Bezpieczeństwo – jak chronić siebie i swoje dane</h2>
     <ul>
       <li>Używaj silnych haseł i nie udostępniaj ich innym.</li>
       <li>Nie publikuj danych osobowych.</li>
@@ -83,7 +131,7 @@
   </section>
 
   <section id="tozsamosc">
-    <h2>Cyfrowa tożsamość – jak dbać o swój wizerunek online</h2>
+    <h2>👤 Cyfrowa tożsamość – jak dbać o swój wizerunek online</h2>
     <ul>
       <li>Publikuj tylko to, co nie zaszkodzi Twojej reputacji.</li>
       <li>Sprawdzaj ustawienia prywatności.</li>
@@ -93,7 +141,7 @@
   </section>
 
   <section id="wiarygodnosc">
-    <h2>Wiarygodność informacji – jak rozpoznawać fałszywe treści</h2>
+    <h2>📡 Wiarygodność informacji – jak rozpoznawać fałszywe treści</h2>
     <ul>
       <li>Sprawdzaj źródła informacji.</li>
       <li>Porównuj wiadomości z różnych stron.</li>
@@ -101,5 +149,9 @@
       <li>Korzystaj z portali fact-checkingowych.</li>
     </ul>
   </section>
+
+  <footer>
+    © 2025 SiecioBezpieczni – Ucz się, chroń się, bądź mądry w sieci!
+  </footer>
 </body>
 </html>
