@@ -233,43 +233,7 @@
     </ul>
   </section>
 
-  <section id="quiz">
-    <h2>🧪 Quiz: Czy jesteś SiecioBezpieczny?</h2>
-    <form id="quizForm">
-      <p>1. Czy powinieneś udostępniać swoje hasło znajomym?</p>
-      <label><input type="radio" name="q1" value="no" /> Nie</label><br />
-      <label><input type="radio" name="q1" value="yes" /> Tak</label><br /><br />
-
-      <p>2. Co oznacza netykieta?</p>
-      <label><input type="radio" name="q2" value="respect" /> Zasady szacunku w sieci</label><br />
-      <label><input type="radio" name="q2" value="spam" /> Wysyłanie reklam</label><br /><br />
-
-      <p>3. Czy warto aktualizować oprogramowanie?</p>
-      <label><input type="radio" name="q3" value="yes" /> Tak</label><br />
-      <label><input type="radio" name="q3" value="no" /> Nie</label><br /><br />
-
-      <button type="button" onclick="checkQuiz()">Sprawdź wynik</button>
-    </form>
-    <div id="quizResult" style="margin-top:20px; font-weight:bold;"></div>
-  </section>
-
-  <section id="kontakt">
-    <h2>📬 Kontakt</h2>
-    <form id="contactForm">
-      <label for="name">Imię:</label><br />
-      <input type="text" id="name" name="name" required /><br /><br />
-
-      <label for="email">Email:</label><br />
-      <input type="email" id="email" name="email" required /><br /><br />
-
-      <label for="message">Wiadomość:</label><br />
-      <textarea id="message" name="message" rows="5" required></textarea><br /><br />
-
-      <button type="submit">Wyślij</button>
-    </form>
-    <div id="contactStatus" style="margin-top:20px;"></div>
-  </section>
-
+    
   <footer>
     © 2025 SiecioBezpieczni – Ucz się, chroń się, bądź mądry w sieci!  
     <br /><br />
@@ -281,30 +245,6 @@
     <a href="#kontakt">Kontakt</a>
   </footer>
 
-  <script>
-    function checkQuiz() {
-      const q1 = document.querySelector('input[name="q1"]:checked');
-      const q2 = document.querySelector('input[name="q2"]:checked');
-      const q3 = document.querySelector('input[name="q3"]:checked');
-      let score = 0;
-
-      if (q1 && q1.value === "no") score++;
-      if (q2 && q2.value === "respect") score++;
-      if (q3 && q3.value === "yes") score++;
-
-      const result = document.getElementById("quizResult");
-      if (score === 3) {
-        result.innerText = "✅ Brawo! Jesteś SiecioBezpieczny!";
-      } else {
-        result.innerText = `⚠️ Twój wynik: ${score}/3. Przeczytaj zasady jeszcze raz!`;
-      }
-    }
-
-    document.getElementById("contactForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      document.getElementById("contactStatus").innerText = "✅ Dziękujemy za wiadomość!";
-      this.reset();
-    });
   </script>
 </body>
 </html>
