@@ -1,12 +1,15 @@
+<!-- Ze względu na ograniczenia długości wiadomości, pełny kod HTML (800+ linijek) nie mieści się w jednej odpowiedzi. -->
+<!-- Aby kontynuować, podzielę go na części. Oto część 1: struktura strony, nagłówek, nawigacja i pierwsze sekcje -->
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>SiecioBezpieczni</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
   <style>
+    /* === ZMIENNE KOLORÓW === */
     :root {
       --primary: #00ccff;
       --accent: #ff00cc;
@@ -15,6 +18,7 @@
       --text: white;
     }
 
+    /* === RESET I PODSTAWY === */
     * {
       box-sizing: border-box;
       scroll-behavior: smooth;
@@ -28,6 +32,7 @@
       overflow-x: hidden;
     }
 
+    /* === NAGŁÓWEK === */
     header {
       text-align: center;
       padding: 100px 20px;
@@ -44,6 +49,7 @@
       to { text-shadow: 0 0 40px var(--accent); }
     }
 
+    /* === NAWIGACJA === */
     nav {
       display: flex;
       flex-wrap: wrap;
@@ -77,6 +83,7 @@
       background: linear-gradient(135deg, var(--primary), var(--accent));
     }
 
+    /* === SEKCJE === */
     section {
       padding: 100px 40px;
       min-height: 100vh;
@@ -146,6 +153,7 @@
       to { transform: translateY(0); opacity: 1; }
     }
 
+    /* === STOPKA === */
     footer {
       text-align: center;
       padding: 50px;
@@ -157,6 +165,7 @@
       z-index: 1;
     }
 
+    /* === RESPONSYWNOŚĆ === */
     @media screen and (max-width: 480px) {
       header { padding: 60px 10px; }
       nav a { padding: 12px 15px; }
@@ -182,6 +191,8 @@
     <a href="#bezpieczenstwo"><span>🔐</span><strong>Bezpieczeństwo</strong></a>
     <a href="#tozsamosc"><span>👤</span><strong>Tożsamość</strong></a>
     <a href="#wiarygodnosc"><span>📡</span><strong>Wiarygodność</strong></a>
+    <a href="#quiz"><span>🧪</span><strong>Quiz</strong></a>
+    <a href="#kontakt"><span>📬</span><strong>Kontakt</strong></a>
   </nav>
 
   <section id="netykieta">
@@ -200,11 +211,9 @@
       <li>Używaj silnych haseł i nie udostępniaj ich innym.</li>
       <li>Nie publikuj danych osobowych.</li>
       <li>Aktualizuj oprogramowanie i korzystaj z antywirusa.</li>
-      <li>Uważaj na podejrzane linki i wiadomości.</li>
-    </ul>
-  </section>
+      <li>Uważaj na podejrz
 
-  <section id="tozsamosc">
+          <section id="tozsamosc">
     <h2>👤 Cyfrowa Tożsamość</h2>
     <ul>
       <li>Publikuj tylko to, co nie zaszkodzi Twojej reputacji.</li>
@@ -217,4 +226,85 @@
   <section id="wiarygodnosc">
     <h2>📡 Wiarygodność Informacji</h2>
     <ul>
-     
+      <li>Sprawdzaj źródła informacji.</li>
+      <li>Porównuj wiadomości z różnych stron.</li>
+      <li>Uważaj na clickbaity i fake newsy.</li>
+      <li>Korzystaj z portali fact-checkingowych.</li>
+    </ul>
+  </section>
+
+  <section id="quiz">
+    <h2>🧪 Quiz: Czy jesteś SiecioBezpieczny?</h2>
+    <form id="quizForm">
+      <p>1. Czy powinieneś udostępniać swoje hasło znajomym?</p>
+      <label><input type="radio" name="q1" value="no" /> Nie</label><br />
+      <label><input type="radio" name="q1" value="yes" /> Tak</label><br /><br />
+
+      <p>2. Co oznacza netykieta?</p>
+      <label><input type="radio" name="q2" value="respect" /> Zasady szacunku w sieci</label><br />
+      <label><input type="radio" name="q2" value="spam" /> Wysyłanie reklam</label><br /><br />
+
+      <p>3. Czy warto aktualizować oprogramowanie?</p>
+      <label><input type="radio" name="q3" value="yes" /> Tak</label><br />
+      <label><input type="radio" name="q3" value="no" /> Nie</label><br /><br />
+
+      <button type="button" onclick="checkQuiz()">Sprawdź wynik</button>
+    </form>
+    <div id="quizResult" style="margin-top:20px; font-weight:bold;"></div>
+  </section>
+
+  <section id="kontakt">
+    <h2>📬 Kontakt</h2>
+    <form id="contactForm">
+      <label for="name">Imię:</label><br />
+      <input type="text" id="name" name="name" required /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input type="email" id="email" name="email" required /><br /><br />
+
+      <label for="message">Wiadomość:</label><br />
+      <textarea id="message" name="message" rows="5" required></textarea><br /><br />
+
+      <button type="submit">Wyślij</button>
+    </form>
+    <div id="contactStatus" style="margin-top:20px;"></div>
+  </section>
+
+  <footer>
+    © 2025 SiecioBezpieczni – Ucz się, chroń się, bądź mądry w sieci!  
+    <br /><br />
+    <a href="#netykieta">Netykieta</a> | 
+    <a href="#bezpieczenstwo">Bezpieczeństwo</a> | 
+    <a href="#tozsamosc">Tożsamość</a> | 
+    <a href="#wiarygodnosc">Wiarygodność</a> | 
+    <a href="#quiz">Quiz</a> | 
+    <a href="#kontakt">Kontakt</a>
+  </footer>
+
+  <script>
+    function checkQuiz() {
+      const q1 = document.querySelector('input[name="q1"]:checked');
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      let score = 0;
+
+      if (q1 && q1.value === "no") score++;
+      if (q2 && q2.value === "respect") score++;
+      if (q3 && q3.value === "yes") score++;
+
+      const result = document.getElementById("quizResult");
+      if (score === 3) {
+        result.innerText = "✅ Brawo! Jesteś SiecioBezpieczny!";
+      } else {
+        result.innerText = `⚠️ Twój wynik: ${score}/3. Przeczytaj zasady jeszcze raz!`;
+      }
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("contactStatus").innerText = "✅ Dziękujemy za wiadomość!";
+      this.reset();
+    });
+  </script>
+</body>
+</html>
