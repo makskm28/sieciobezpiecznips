@@ -9,6 +9,7 @@
   <style>
     :root {
       --primary: #00ccff;
+      --accent: #ff00cc;
       --dark: #001f3f;
       --darker: #000000;
       --text: white;
@@ -16,39 +17,34 @@
 
     * {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(-45deg, #000000, #001f3f, #003366, #00ccff);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+      background: radial-gradient(circle at top left, #000000, #001f3f, #003366);
       color: var(--text);
       overflow-x: hidden;
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
     header {
       text-align: center;
-      padding: 80px 20px;
-      font-size: clamp(2em, 5vw, 3em);
-      background: linear-gradient(to right, var(--dark), #000000);
-      box-shadow: 0 0 40px var(--primary);
+      padding: 100px 20px;
+      font-size: clamp(2.5em, 6vw, 4em);
+      background: linear-gradient(to right, var(--dark), var(--darker));
+      box-shadow: 0 0 60px var(--primary);
       animation: glow 2s infinite alternate;
+      position: relative;
+      z-index: 1;
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 10px var(--primary); }
-      to { text-shadow: 0 0 30px var(--primary); }
+      from { text-shadow: 0 0 20px var(--primary); }
+      to { text-shadow: 0 0 40px var(--accent); }
     }
 
-    .tab-nav {
+    nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -60,29 +56,29 @@
       padding: 10px;
     }
 
-    .tab-nav a {
+    nav a {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin: 10px;
-      padding: 15px;
-      background: rgba(0, 43, 92, 0.6);
+      padding: 15px 20px;
+      background: linear-gradient(135deg, #002f5f, #004080);
       border: 2px solid var(--primary);
       border-radius: 15px;
       text-decoration: none;
       color: var(--text);
-      box-shadow: 0 0 10px var(--primary);
+      box-shadow: 0 0 15px var(--primary);
       transition: transform 0.3s ease, background 0.3s ease;
       font-size: clamp(0.9em, 2vw, 1.1em);
     }
 
-    .tab-nav a:hover {
+    nav a:hover {
       transform: scale(1.1);
-      background: rgba(0, 204, 255, 0.2);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
     }
 
     section {
-      padding: 80px 40px;
+      padding: 100px 40px;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -90,24 +86,33 @@
       animation: fadeIn 1.5s ease-in;
       max-width: 1000px;
       margin: auto;
+      position: relative;
+      z-index: 1;
     }
 
     h2 {
       color: var(--primary);
-      font-size: clamp(1.8em, 4vw, 2.5em);
+      font-size: clamp(2em, 5vw, 3em);
       margin-bottom: 30px;
       animation: slideUp 1s ease-out;
+      position: relative;
     }
 
-    h2::before {
-      content: '✨ ';
-      animation: pulse 2s infinite;
+    h2::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -10px;
+      width: 60px;
+      height: 4px;
+      background: var(--accent);
+      animation: pulseBar 2s infinite;
     }
 
-    @keyframes pulse {
-      0% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
-      100% { opacity: 0.5; transform: scale(1); }
+    @keyframes pulseBar {
+      0% { transform: scaleX(1); opacity: 0.6; }
+      50% { transform: scaleX(1.5); opacity: 1; }
+      100% { transform: scaleX(1); opacity: 0.6; }
     }
 
     ul {
@@ -117,18 +122,18 @@
 
     ul li {
       margin: 20px 0;
-      padding: 15px 25px;
+      padding: 20px 30px;
       background: rgba(255, 255, 255, 0.05);
       border-left: 5px solid var(--primary);
-      border-radius: 10px;
+      border-radius: 12px;
       transition: background 0.3s ease, transform 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 0 10px rgba(0, 204, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
     }
 
     ul li:hover {
       background: rgba(255, 255, 255, 0.1);
       transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+      box-shadow: 0 0 25px rgba(0, 204, 255, 0.5);
     }
 
     @keyframes fadeIn {
@@ -143,34 +148,36 @@
 
     footer {
       text-align: center;
-      padding: 40px;
+      padding: 50px;
       background-color: var(--dark);
       font-size: 1em;
       color: #aaa;
-      box-shadow: 0 -5px 20px var(--primary);
+      box-shadow: 0 -5px 30px var(--primary);
+      position: relative;
+      z-index: 1;
     }
 
     @media screen and (max-width: 480px) {
-      header { padding: 50px 10px; }
-      .tab-nav a { padding: 12px 15px; }
-      section { padding: 50px 20px; }
-      ul li { padding: 12px 18px; }
+      header { padding: 60px 10px; }
+      nav a { padding: 12px 15px; }
+      section { padding: 60px 20px; }
+      ul li { padding: 15px 20px; }
     }
 
     @media screen and (min-width: 481px) and (max-width: 1024px) {
-      header { padding: 60px 20px; }
-      .tab-nav a { padding: 15px 25px; }
-      section { padding: 60px 30px; }
+      header { padding: 80px 20px; }
+      nav a { padding: 15px 25px; }
+      section { padding: 80px 30px; }
     }
 
     @media screen and (min-width: 1025px) {
-      section { padding: 80px 40px; }
+      section { padding: 100px 40px; }
     }
   </style>
 </head>
 <body>
   <header>🚀 SiecioBezpieczni</header>
-  <nav class="tab-nav">
+  <nav>
     <a href="#netykieta"><span>🧠</span><strong>Netykieta</strong></a>
     <a href="#bezpieczenstwo"><span>🔐</span><strong>Bezpieczeństwo</strong></a>
     <a href="#tozsamosc"><span>👤</span><strong>Tożsamość</strong></a>
@@ -210,7 +217,4 @@
   <section id="wiarygodnosc">
     <h2>📡 Wiarygodność Informacji</h2>
     <ul>
-      <li>Sprawdzaj źródła informacji.</li>
-      <li>Porównuj wiadomości z różnych stron.</li>
-      <li>Uważaj na clickbaity i fake newsy.</li>
-      <li
+     
