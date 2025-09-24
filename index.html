@@ -1,223 +1,590 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>SiecioBezpieczni</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #00ccff;
-      --dark: #001f3f;
-      --darker: #000000;
-      --text: white;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Bezpiecznie i Kulturalnie w Sieci — NetGuard</title>
+<meta name="description" content="Strona o zasadach netykiety, bezpieczeństwie, cyfrowej tożsamości i weryfikacji informacji.">
+<link rel="icon" href="data:,">
+<style>
+  /* ===========================
+     RESET & BASE
+     =========================== */
+  * {box-sizing: border-box; margin:0; padding:0; -webkit-font-smoothing:antialiased}
+  :root{
+    --bg1:#02040a; /* very dark */
+    --bg2:#00142b; /* navy */
+    --accent:#00c1ff; /* cyan */
+    --accent2:#0af; 
+    --card:#061428;
+    --glass: rgba(255,255,255,0.03);
+    --text:#e6f7ff;
+    --muted:#9fb6c8;
+    --glass-2: rgba(255,255,255,0.02);
+    --shadow: 0 8px 30px rgba(2,8,20,0.7);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  html,body,#app{height:100%}
+  body{
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(0,30,80,0.6), transparent 10%),
+                radial-gradient(900px 500px at 90% 90%, rgba(0,0,40,0.6), transparent 10%),
+                linear-gradient(180deg,var(--bg1), var(--bg2) 60%);
+    color:var(--text);
+    overflow-y:auto;
+  }
 
-    * {
-      box-sizing: border-box;
-    }
+  /* ===========================
+     Animated background 'nebula' and moving elements
+     =========================== */
+  .bg-anim{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(800px 200px at 20% 20%, rgba(0,120,200,0.12), transparent 10%),
+      radial-gradient(600px 180px at 80% 80%, rgba(10,10,120,0.12), transparent 10%);
+    mix-blend-mode: screen;
+    animation: rotateBG 40s linear infinite;
+    filter: blur(12px) saturate(120%);
+    opacity:0.95;
+  }
+  @keyframes rotateBG{
+    0%{transform:rotate(0deg) scale(1)}
+    50%{transform:rotate(180deg) scale(1.03)}
+    100%{transform:rotate(360deg) scale(1)}
+  }
 
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(-45deg, #000000, #001f3f, #003366, #00ccff);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      color: var(--text);
-      overflow-x: hidden;
-    }
+  /* floating blobs */
+  .blob{
+    position:fixed; z-index:0; border-radius:50%;
+    mix-blend-mode: overlay; opacity:0.55; filter: blur(18px);
+    background: radial-gradient(circle at 30% 30%, rgba(0,200,255,0.9), rgba(0,120,200,0.6));
+    animation: floatA 8s ease-in-out infinite;
+    will-change: transform;
+  }
+  .blob.b1{width:340px;height:340px; left: -80px; top: -40px; animation-duration:14s;}
+  .blob.b2{width:260px;height:260px; right: -60px; bottom: -40px; animation-duration:11s; background: radial-gradient(circle at 30% 30%, rgba(10,80,190,0.9), rgba(0,20,140,0.6));}
+  @keyframes floatA{
+    0%{transform:translateY(0) translateX(0) rotate(0deg)}
+    50%{transform:translateY(-24px) translateX(12px) rotate(15deg)}
+    100%{transform:translateY(0) translateX(0) rotate(0deg)}
+  }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+  /* ===========================
+     Container & header
+     =========================== */
+  .wrap{position:relative; z-index:10; max-width:1100px; margin:48px auto; padding:32px;}
+  header{
+    display:flex; align-items:center; gap:18px; margin-bottom:22px;
+    backdrop-filter: blur(6px) saturate(120%);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px; padding:18px; box-shadow: var(--shadow);
+  }
+  .logo{
+    width:78px; height:78px; border-radius:12px; display:grid; place-items:center;
+    background: linear-gradient(135deg,#001e3a, #00142b);
+    border:1px solid rgba(255,255,255,0.04);
+    position:relative; overflow:hidden;
+  }
+  .logo .mark{
+    width:52px; height:52px; border-radius:10px; background: linear-gradient(90deg,#00d4ff,#0077ff);
+    transform:rotate(18deg); box-shadow:0 6px 20px rgba(0,120,200,0.2);
+    animation: logoPulse 2.8s ease-in-out infinite;
+  }
+  @keyframes logoPulse{
+    0%{transform:scale(1) rotate(18deg)}
+    50%{transform:scale(1.06) rotate(18deg)}
+    100%{transform:scale(1) rotate(18deg)}
+  }
+  .title h1{font-size:20px; letter-spacing:0.2px; margin-bottom:4px}
+  .title p{color:var(--muted); font-size:13px}
 
-    header {
-      text-align: center;
-      padding: 80px 20px;
-      font-size: clamp(2em, 5vw, 3em);
-      background: linear-gradient(to right, var(--dark), #000000);
-      box-shadow: 0 0 40px var(--primary);
-      animation: glow 2s infinite alternate;
-    }
+  /* ===========================
+     NAV / Tabs
+     =========================== */
+  nav{
+    margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .tab-btn{
+    padding:10px 14px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.03);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    color:var(--text); font-weight:600; font-size:14px;
+    transition:transform .22s ease, box-shadow .22s;
+    position:relative; overflow:hidden;
+  }
+  .tab-btn:hover{transform:translateY(-6px); box-shadow:0 10px 30px rgba(0,0,0,0.5)}
+  .tab-btn.active{
+    background: linear-gradient(90deg, rgba(0,193,255,0.12), rgba(10,140,255,0.06));
+    box-shadow:0 12px 40px rgba(0,150,255,0.12) inset, 0 12px 30px rgba(0,120,200,0.15);
+    border:1px solid rgba(0,180,255,0.18);
+  }
 
-    @keyframes glow {
-      from { text-shadow: 0 0 10px var(--primary); }
-      to { text-shadow: 0 0 30px var(--primary); }
-    }
+  /* ===========================
+     Main content layout
+     =========================== */
+  .main{
+    display:grid; grid-template-columns: 1fr 360px; gap:20px; margin-top:20px;
+    align-items:start;
+  }
+  @media (max-width:980px){ .main{grid-template-columns:1fr} .wrap{padding:18px} }
 
-    .tab-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      background-color: rgba(0, 43, 92, 0.8);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      padding: 10px;
-    }
+  /* left column cards with strong animations */
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px; padding:22px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .card.header-hero{
+    min-height:320px; display:flex; flex-direction:column; gap:12px;
+    background-image: linear-gradient(180deg, rgba(0,30,80,0.14), rgba(0,0,0,0.05));
+  }
+  .hero-anim{
+    flex:1; display:flex; gap:18px; align-items:center;
+  }
+  .hero-left{flex:1}
+  .hero-right{width:220px; height:160px; border-radius:12px; background:linear-gradient(135deg, rgba(0,200,255,0.06), rgba(10,80,200,0.03)); display:grid; place-items:center; animation: slideIn .9s ease both;}
+  @keyframes slideIn{0%{transform:translateY(20px);opacity:0}100%{transform:none;opacity:1}}
 
-    .tab-nav a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 10px;
-      padding: 15px;
-      background: rgba(0, 43, 92, 0.6);
-      border: 2px solid var(--primary);
-      border-radius: 15px;
-      text-decoration: none;
-      color: var(--text);
-      box-shadow: 0 0 10px var(--primary);
-      transition: transform 0.3s ease, background 0.3s ease;
-      font-size: clamp(0.9em, 2vw, 1.1em);
-    }
+  h2{font-size:18px; margin-bottom:8px}
+  p.lead{color:var(--muted); margin-bottom:12px}
 
-    .tab-nav a:hover {
-      transform: scale(1.1);
-      background: rgba(0, 204, 255, 0.2);
-    }
+  /* FAB animated icons */
+  .badge{
+    display:inline-flex; gap:8px; align-items:center; background:var(--glass); padding:8px 10px; border-radius:999px; font-weight:600; color:var(--text); border:1px solid rgba(255,255,255,0.03);
+  }
 
-    section {
-      padding: 80px 40px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      animation: fadeIn 1.5s ease-in;
-      max-width: 1000px;
-      margin: auto;
-    }
+  /* content sections (tabs) */
+  .tab-content{display:none; opacity:0; transform:translateY(14px); transition:opacity .42s ease, transform .42s ease}
+  .tab-content.active{display:block; opacity:1; transform:none}
 
-    h2 {
-      color: var(--primary);
-      font-size: clamp(1.8em, 4vw, 2.5em);
-      margin-bottom: 30px;
-      animation: slideUp 1s ease-out;
-    }
+  /* fancy list items */
+  .rule{
+    margin:10px 0; padding:12px; border-radius:10px; background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border:1px solid rgba(255,255,255,0.02);
+    display:flex; gap:12px; align-items:flex-start; animation: floatCard .7s ease both;
+  }
+  @keyframes floatCard{0%{transform:translateY(8px);opacity:0}100%{transform:none;opacity:1}}
+  .rule .num{width:46px;height:46px;border-radius:10px;background:linear-gradient(180deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#001226;font-weight:800;font-size:16px;box-shadow:0 8px 20px rgba(0,140,220,0.12)}
+  .rule .body{flex:1}
+  .rule h3{font-size:15px;margin-bottom:6px}
+  .rule p{color:var(--muted);font-size:14px;line-height:1.45}
 
-    h2::before {
-      content: '✨ ';
-      animation: pulse 2s infinite;
-    }
+  /* right column: FAQ / Exam questions */
+  aside .qa{display:flex;flex-direction:column; gap:8px}
+  .qa-item{background:var(--glass-2); padding:12px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.02); transition:transform .15s}
+  .qa-item:hover{transform:translateY(-6px)}
+  .qa-item .q{font-weight:700}
+  .qa-item .a{display:none;color:var(--muted); margin-top:8px; line-height:1.45}
+  .qa-item.open .a{display:block}
 
-    @keyframes pulse {
-      0% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.1); }
-      100% { opacity: 0.5; transform: scale(1); }
-    }
+  /* animated progress / highlights */
+  .pulse{
+    height:12px; width:100%; border-radius:999px; background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    overflow:hidden; position:relative; margin-top:10px;
+  }
+  .pulse .bar{height:100%; width:0%; background:linear-gradient(90deg,#00aaff,#0055ff); animation: fillBar 3s ease forwards}
+  @keyframes fillBar{0%{width:0%}100%{width:78%}}
 
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
+  /* footer */
+  footer{margin-top:22px;color:var(--muted); font-size:13px; text-align:center; padding:22px 10px}
 
-    ul li {
-      margin: 20px 0;
-      padding: 15px 25px;
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 5px solid var(--primary);
-      border-radius: 10px;
-      transition: background 0.3s ease, transform 0.4s ease, box-shadow 0.4s ease;
-      box-shadow: 0 0 10px rgba(0, 204, 255, 0.2);
-    }
+  /* small interactive code box */
+  .code{
+    background:linear-gradient(180deg, rgba(2,10,20,0.6), rgba(2,10,20,0.45));
+    padding:12px; border-radius:8px; font-family: "Source Code Pro", monospace; font-size:13px; color:#bfefff; border:1px solid rgba(255,255,255,0.03)
+  }
 
-    ul li:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: translateY(-5px) scale(1.03);
-      box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
-    }
+  /* subtle focus states */
+  .tab-btn:focus, .qa-item:focus{outline:2px solid rgba(0,190,255,0.18); outline-offset:3px}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(100px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    footer {
-      text-align: center;
-      padding: 40px;
-      background-color: var(--dark);
-      font-size: 1em;
-      color: #aaa;
-      box-shadow: 0 -5px 20px var(--primary);
-    }
-
-    @media screen and (max-width: 480px) {
-      header { padding: 50px 10px; }
-      .tab-nav a { padding: 12px 15px; }
-      section { padding: 50px 20px; }
-      ul li { padding: 12px 18px; }
-    }
-
-    @media screen and (min-width: 481px) and (max-width: 1024px) {
-      header { padding: 60px 20px; }
-      .tab-nav a { padding: 15px 25px; }
-      section { padding: 60px 30px; }
-    }
-
-    @media screen and (min-width: 1025px) {
-      section { padding: 80px 40px; }
-    }
-  </style>
+</style>
 </head>
 <body>
-  <header>🚀 SiecioBezpieczni</header>
-  <nav class="tab-nav">
-    <a href="#netykieta"><span>🧠</span><strong>Netykieta</strong></a>
-    <a href="#bezpieczenstwo"><span>🔐</span><strong>Bezpieczeństwo</strong></a>
-    <a href="#tozsamosc"><span>👤</span><strong>Tożsamość</strong></a>
-    <a href="#wiarygodnosc"><span>📡</span><strong>Wiarygodność</strong></a>
-  </nav>
+  <div class="bg-anim" aria-hidden="true"></div>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
 
-  <section id="netykieta">
-    <h2>🧠 Netykieta</h2>
-    <ul>
-      <li>Szanuj innych – nie obrażaj, nie hejtuj.</li>
-      <li>Unikaj spamu i wulgaryzmów.</li>
-      <li>Pomagaj, zamiast krytykować.</li>
-      <li>Pamiętaj, że po drugiej stronie jest człowiek.</li>
-    </ul>
-  </section>
+  <div id="app" class="wrap">
+    <header role="banner" aria-label="Nagłówek strony">
+      <div class="logo" aria-hidden="true">
+        <div class="mark"></div>
+      </div>
+      <div class="title">
+        <h1>NetGuard — Bezpiecznie i Kulturalnie w Sieci</h1>
+        <p>Przewodnik po netykiecie, bezpieczeństwie, cyfrowej tożsamości i weryfikacji informacji.</p>
+        <nav id="tabs" aria-label="Nawigacja zakładek" role="navigation">
+          <button class="tab-btn active" data-tab="tab1" id="btn-tab1">Netykieta</button>
+          <button class="tab-btn" data-tab="tab2" id="btn-tab2">Bezpieczeństwo</button>
+          <button class="tab-btn" data-tab="tab3" id="btn-tab3">Cyfrowa tożsamość</button>
+          <button class="tab-btn" data-tab="tab4" id="btn-tab4">Wiarygodność informacji</button>
+        </nav>
+      </div>
+    </header>
 
-  <section id="bezpieczenstwo">
-    <h2>🔐 Bezpieczeństwo</h2>
-    <ul>
-      <li>Używaj silnych haseł i nie udostępniaj ich innym.</li>
-      <li>Nie publikuj danych osobowych.</li>
-      <li>Aktualizuj oprogramowanie i korzystaj z antywirusa.</li>
-      <li>Uważaj na podejrzane linki i wiadomości.</li>
-      <li>Pobieraj z internetu tylko sprawdżone pliki</li>
-    </ul>
-  </section>
+    <main class="main" role="main">
+      <!-- LEFT: content -->
+      <section class="left">
+        <div class="card header-hero" role="article" aria-labelledby="hero-title">
+          <div class="hero-anim">
+            <div class="hero-left">
+              <h2 id="hero-title">Cztery filary bezpiecznego życia online</h2>
+              <p class="lead">Ta strona zawiera praktyczne zasady i przykłady — przygotowana z myślą o egzaminie. Dużo animacji, jasne przykłady i gotowe odpowiedzi na pytania egzaminacyjne.</p>
+              <div class="badge">✔️ Styl: czarno-granatowo-niebieskie tło & dużo animacji</div>
+            </div>
+            <div class="hero-right">
+              <div style="text-align:center;">
+                <strong style="font-size:18px; display:block; margin-bottom:6px">NetGuard</strong>
+                <small style="color:var(--muted)">Interaktywny przewodnik</small>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <section id="tozsamosc">
-    <h2>👤 Cyfrowa Tożsamość</h2>
-    <ul>
-      <li>Publikuj tylko to, co nie zaszkodzi Twojej reputacji.</li>
-      <li>Sprawdzaj ustawienia prywatności.</li>
-      <li>Buduj pozytywny obraz siebie w sieci.</li>
-      <li>Unikaj kontrowersyjnych treści i komentarzy.</li>
-    </ul>
-  </section>
+        <!-- TAB CONTENT: Netykieta -->
+        <article class="card" id="tab1" role="region" aria-labelledby="t1title">
+          <div class="tab-content active">
+            <h2 id="t1title">Netykieta — dobre zachowanie w sieci</h2>
+            <p class="lead">Netykieta to reguły uprzejmego, odpowiedzialnego zachowania online. Oto szczegółowe zasady i przykłady.</p>
 
-  <section id="wiarygodnosc">
-    <h2>📡 Wiarygodność Informacji</h2>
-    <ul>
-      <li>Sprawdzaj źródła informacji.</li>
-      <li>Porównuj wiadomości z różnych stron.</li>
-      <li>Uważaj na clickbaity i fake newsy.</li>
-    </section>
+            <div class="rule" style="animation-delay:.05s">
+              <div class="num">1</div>
+              <div class="body">
+                <h3>Szanuj innych</h3>
+                <p>Traktuj innych tak, jak chcesz być traktowany. Unikaj obraźliwych słów, hejtu i trollingu. Przykład: zamiast atakować — zapytaj, wyjaśnij, popros o źródła.</p>
+              </div>
+            </div>
 
+            <div class="rule" style="animation-delay:.10s">
+              <div class="num">2</div>
+              <div class="body">
+                <h3>Stosuj jasny język i emotikony tam, gdzie trzeba</h3>
+                <p>Wiadomości tekstowe mogą być źle odczytane — używaj emotikon, akapitów i jasnych nagłówków, by przekazać ton wypowiedzi.</p>
+              </div>
+            </div>
 
- <section>
-    <h2>!  INFORMACJE O BEZPIECZEŃSTWIE [2025]  !</h2>  
-</section>
- 
+            <div class="rule" style="animation-delay:.15s">
+              <div class="num">3</div>
+              <div class="body">
+                <h3>Nie udostępniaj prywatnych informacji innych osób</h3>
+                <p>Przed udostępnieniem czyjejś rozmowy, zdjęcia czy danych zapytaj o zgodę.</p>
+              </div>
+            </div>
+
+            <div class="rule" style="animation-delay:.20s">
+              <div class="num">4</div>
+              <div class="body">
+                <h3>Źródła i cytowanie</h3>
+                <p>Podawaj źródła, jeśli przekazujesz dane, statystyki lub cytaty. Pomaga to w wiarygodności komunikatu.</p>
+              </div>
+            </div>
+
+            <div class="rule" style="animation-delay:.25s">
+              <div class="num">5</div>
+              <div class="body">
+                <h3>Unikaj spamu i masowych wiadomości</h3>
+                <p>Wysyłanie niechcianych linków i treści to złamanie netykiety — może skutkować blokadą konta.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <div class="pulse"><div class="bar"></div></div>
+              <small style="color:var(--muted)">Praktykuj: 1) Odpisz uprzejmie, 2) Zapytaj, 3) Zacytuj źródło.</small>
+            </div>
+          </div>
+        </article>
+
+        <!-- TAB CONTENT: Bezpieczeństwo -->
+        <article class="card" id="tab2" role="region" aria-labelledby="t2title">
+          <div class="tab-content">
+            <h2 id="t2title">Bezpieczeństwo — jak chronić siebie i swoje dane</h2>
+            <p class="lead">Konkretne metody ochrony prywatności, haseł, urządzeń i kont.</p>
+
+            <div class="rule">
+              <div class="num">1</div>
+              <div class="body">
+                <h3>Silne, unikalne hasła</h3>
+                <p>Używaj menedżera haseł (np. Bitwarden, KeePass, 1Password). Hasło powinno mieć min. 12 znaków, mix liter, cyfr i symboli.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">2</div>
+              <div class="body">
+                <h3>Wieloskładnikowe uwierzytelnianie (2FA)</h3>
+                <p>Włącz 2FA w najważniejszych usługach (e-mail, bankowość, media społecznościowe). Preferuj aplikacje uwierzytelniające (Authy/Google Authenticator) lub klucze sprzętowe (YubiKey).</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">3</div>
+              <div class="body">
+                <h3>Aktualizacje i backup</h3>
+                <p>Regularnie aktualizuj system i aplikacje. Twórz kopie zapasowe ważnych danych — offline i w zaszyfrowanym chmurze.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">4</div>
+              <div class="body">
+                <h3>Uważaj na phishing</h3>
+                <p>Sprawdzaj adresy e-mail, linki (najedź, nie klikaj), unikaj podawania haseł po kliknięciu w link z maila. Jeśli nie jesteś pewny — wejdź na stronę ręcznie w przeglądarce.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">5</div>
+              <div class="body">
+                <h3>Ustawienia prywatności</h3>
+                <p>Sprawdź ustawienia prywatności na portalach społecznościowych (kto widzi posty, kto może wysyłać wiadomości). Minimalizuj ilość danych publicznych.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <div class="code">
+                {/* Przydatna checklista:
+                 - Menedżer haseł: TAK
+                 - 2FA: TAK
+                 - Kopia zapasowa: TAK
+                 - Aktualizacje: WŁĄCZONE
+                 */}
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TAB CONTENT: Cyfrowa tożsamość -->
+        <article class="card" id="tab3" role="region" aria-labelledby="t3title">
+          <div class="tab-content">
+            <h2 id="t3title">Cyfrowa tożsamość — jak dbać o swój wizerunek online</h2>
+            <p class="lead">Twoje konto, posty, zdjęcia i komentarze tworzą obraz Ciebie w sieci — warto nim świadomie zarządzać.</p>
+
+            <div class="rule">
+              <div class="num">1</div>
+              <div class="body">
+                <h3>Kontrola treści</h3>
+                <p>Przejrzyj stare posty i usuwaj te, które mogą zaszkodzić (obraźliwe, kompromitujące). Ustaw publiczność postów — nie wszystko musi być publiczne.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">2</div>
+              <div class="body">
+                <h3>Profesjonalny profil</h3>
+                <p>Utrzymuj spójność między profilami (np. LinkedIn dla pracy). Używaj neutralnych zdjęć i jasnych informacji kontaktowych.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">3</div>
+              <div class="body">
+                <h3>Samoświadomość prywatna</h3>
+                <p>Rozważ używanie innego konta prywatnego niż publicznego; zastanów się przed użyciem prawdziwych danych w miejscach, które tego nie wymagają.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">4</div>
+              <div class="body">
+                <h3>Wizerunek a rekrutacja</h3>
+                <p>Pracodawcy często sprawdzają kandydatów online — Twoje profile powinny odzwierciedlać profesjonalizm i spójność.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- TAB CONTENT: Wiarygodność informacji -->
+        <article class="card" id="tab4" role="region" aria-labelledby="t4title">
+          <div class="tab-content">
+            <h2 id="t4title">Wiarygodność informacji — jak rozpoznawać fałszywe treści</h2>
+            <p class="lead">Kilka technik i wskazówek pomagających odróżnić prawdę od manipulacji.</p>
+
+            <div class="rule">
+              <div class="num">1</div>
+              <div class="body">
+                <h3>Sprawdź źródło</h3>
+                <p>Skąd pochodzi informacja? Czy to znane medium? Czy autor ma wiarygodne doświadczenie? Nie ufaj anonimowym wpisom bez dowodów.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">2</div>
+              <div class="body">
+                <h3>Weryfikuj obraz i wideo</h3>
+                <p>Użyj wyszukiwania obrazem (Google, TinEye) — sprawdź, czy grafika nie została wykorzystana w innym kontekście.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">3</div>
+              <div class="body">
+                <h3>Sprawdź datę i kontekst</h3>
+                <p>Często stary materiał jest przedstawiany jako nowy — zawsze sprawdź datę publikacji i to, o czym mowa.</p>
+              </div>
+            </div>
+
+            <div class="rule">
+              <div class="num">4</div>
+              <div class="body">
+                <h3>Cross-check (wiele źródeł)</h3>
+                <p>Porównaj informację w kilku niezależnych źródłach. Jeśli tylko jedno źródło podaje sensacyjną informację — bądź ostrożny.</p>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <div class="code">
+                // Szybka lista: autor, data, źródła, oryginalne źródło (link), wyszukiwanie obrazem
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <footer>
+          © NetGuard — Projekt edukacyjny. Strona przygotowana na egzamin. Styl: czarno-granatowo-niebieski. Dużo animacji — gotowe do pokazania na żywo.
+        </footer>
+      </section>
+
+      <!-- RIGHT: FAQ / Exam questions -->
+      <aside>
+        <div class="card" role="complementary" aria-labelledby="faqTitle">
+          <h2 id="faqTitle">Pytania na egzamin + przykładowe odpowiedzi</h2>
+          <p class="lead">Kliknij pytanie, by rozwinąć przykładową odpowiedź.</p>
+
+          <div class="qa" id="faqList">
+            <!-- Q1 -->
+            <div class="qa-item open" tabindex="0">
+              <div class="q">1. Jaką nazwę nadałeś(-aś) swojej stronie i dlaczego?</div>
+              <div class="a">
+                <p><strong>Odpowiedź (przykład):</strong> Nazwa: <em>NetGuard</em>. Wybrałem(am) ją, ponieważ łączy słowa „net” (sieć) i „guard” (ochrona) — dobrze oddaje tematykę strony (bezpieczeństwo i opieka nad wizerunkiem online) oraz brzmi profesjonalnie i zapada w pamięć.</p>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="qa-item" tabindex="0">
+              <div class="q">2. Z jakiego kreatora stron internetowych skorzystałeś(-aś)?</div>
+              <div class="a">
+                <p><strong>Odpowiedź (przykład):</strong> Na egzamin przygotowałem(am) samodzielny projekt HTML/CSS/JS, jednak jeśli miałbym/miałabym użyć kreatora — wybrał(a)bym <em>Wix</em> lub <em>Canva</em> ze względu na łatwość dodawania animacji i estetycznych szablonów. (Na potrzeby tego zadania dostarczam własny kod.)</p>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="qa-item" tabindex="0">
+              <div class="q">3. Jakie są najważniejsze zasady netykiety?</div>
+              <div class="a">
+                <p><strong>Odpowiedź (skrócona):</strong> Szacunek do innych, jasność wypowiedzi, podawanie źródeł, nieudostępnianie cudzych danych bez zgody, unikanie spamu i hejtowania. W praktyce: odpowiadaj uprzejmie, cytuj źródła, używaj poprawnej interpunkcji, unikaj CAPS LOCK.</p>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="qa-item" tabindex="0">
+              <div class="q">4. Jak chronić dane osobowe i hasła w sieci?</div>
+              <div class="a">
+                <p><strong>Odpowiedź (skrócona):</strong> Używaj menedżera haseł, silnych i unikalnych haseł, włączaj 2FA, regularnie aktualizuj oprogramowanie, twórz kopie zapasowe i uważnie sprawdzaj adresy URL (phishing).</p>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="qa-item" tabindex="0">
+              <div class="q">5. Co oznacza pojęcie „cyfrowa tożsamość”?</div>
+              <div class="a">
+                <p><strong>Odpowiedź:</strong> Cyfrowa tożsamość to suma informacji o nas widoczna online: konta, posty, zdjęcia, komentarze, metadane — wszystko, co tworzy nasz wizerunek w sieci i może wpływać na relacje, pracę czy bezpieczeństwo.</p>
+              </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="qa-item" tabindex="0">
+              <div class="q">6. Jak sprawdzić, czy informacja w Internecie jest prawdziwa?</div>
+              <div class="a">
+                <p><strong>Odpowiedź (kroki):</strong> 1) Sprawdź źródło i autora; 2) Poszukaj innych niezależnych źródeł; 3) Sprawdź datę publikacji; 4) Wykonaj wyszukiwanie obrazem dla grafik; 5) Zwróć uwagę na emocjonalny ton — sensacyjne nagłówki wymagają sprawdzenia.</p>
+              </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="qa-item" tabindex="0">
+              <div class="q">7. Czego dowiedziałeś(-aś) się od bliskich na temat bezpieczeństwa w sieci?</div>
+              <div class="a">
+                <p><strong>Odpowiedź (przykład):</strong> Nauczyłem/am się od rodziców, by nie podawać numerów PESEL/PESEL-like publicznie, by uważać na oszustwa telefoniczne i by pytać o radę przy podejrzanych wiadomościach. Od znajomych dowiedziałem/am się o sensie używania 2FA i menedżerów haseł.</p>
+              </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="qa-item" tabindex="0">
+              <div class="q">8. Która z czterech zakładek była Twoim zdaniem najważniejsza i dlaczego?</div>
+              <div class="a">
+                <p><strong>Odpowiedź (przykład):</strong> Moim zdaniem najważniejsze jest „Bezpieczeństwo” — bez zabezpieczeń technicznych (silnych haseł, 2FA, aktualizacji) reszta staje się ryzykowna. Jednak równie ważna jest netykieta i weryfikacja informacji — bo bezpieczeństwo to nie tylko technika, ale też zachowania.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div class="card" aria-hidden="false">
+          <h3>Jak pokazać stronę na egzaminie?</h3>
+          <p class="lead">Otwórz plik `index.html` w przeglądarce, przedstaw strukturę (zakładki), odpowiedzi na pytania i pokaż kilka przykładów: np. wyszukiwanie obrazem, włączenie 2FA w panelu konta lub menedżera haseł.</p>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+<script>
+/* ===========================
+   Interakcje: zakładki + FAQ
+   =========================== */
+(function(){
+  const tabs = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.tab-content');
+  function activateTab(name){
+    // buttons
+    tabs.forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+    // contents
+    contents.forEach(c => {
+      // parent card container id corresponds to tab ids (tab1..tab4)
+      const parent = c.closest('.card');
+      if(!parent) return;
+      const id = parent.id;
+      if(id === name){
+        c.classList.add('active');
+        // ensure smooth focus
+        parent.scrollIntoView({behavior:'smooth', block:'center'});
+      } else {
+        c.classList.remove('active');
+      }
+    });
+  }
+  tabs.forEach(b => b.addEventListener('click', ()=> activateTab(b.dataset.tab)));
+
+  // keyboard support
+  tabs.forEach(b=> b.addEventListener('keydown', (e)=>{
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown'){
+      e.preventDefault();
+      let next = b.nextElementSibling || document.querySelector('.tab-btn');
+      next.focus();
+    } else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+      e.preventDefault();
+      let prev = b.previousElementSibling || document.querySelector('.tab-btn:last-of-type');
+      prev.focus();
+    }
+  }));
+
+  // FAQ toggle
+  document.querySelectorAll('.qa-item').forEach(item=>{
+    item.addEventListener('click', ()=> item.classList.toggle('open'));
+    item.addEventListener('keydown', (e)=> { if(e.key==='Enter' || e.key===' ') { e.preventDefault(); item.classList.toggle('open'); } });
+  });
+
+  // small animation: animate bars when switching to tab2 (security)
+  document.getElementById('btn-tab2').addEventListener('click', ()=>{
+    const bars = document.querySelectorAll('.pulse .bar');
+    bars.forEach(b => {
+      b.style.animation = 'none';
+      void b.offsetWidth;
+      b.style.animation = '';
+    });
+  });
+
+  // Set initial active tab
+  activateTab('tab1');
+
+})();
+</script>
+</body>
+</html>
